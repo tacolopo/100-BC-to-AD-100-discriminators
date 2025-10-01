@@ -1,21 +1,4 @@
 #!/usr/bin/env python3
-"""
-Single Authorship Probability Analyzer
-======================================
-
-This script uses the discriminative features identified from ancient Greek authors
-to analyze whether a corpus (like the 14 Pauline letters) was written by a single
-author or multiple authors.
-
-Method:
-1. Extract the same 60 discriminative features from each text in the corpus
-2. Calculate variance/consistency within the corpus for each feature
-3. Compare this variance to the expected variance for single authors
-4. Generate probability score for single authorship
-
-Example usage:
-python single_authorship_analyzer.py /path/to/pauline_letters/
-"""
 
 import os
 import json
@@ -32,17 +15,14 @@ class SingleAuthorshipAnalyzer:
         self.load_reference_data()
         
     def load_reference_data(self):
-        """Load the reference data from our 33-author analysis."""
         print("Loading reference data from ancient Greek analysis...")
         
-        # Load discriminative features
         with open('results/best_discriminative_features.json', 'r', encoding='utf-8') as f:
             self.reference_features = json.load(f)
         
-        # Extract the top discriminative features for analysis
         self.top_features = []
-        for item in self.reference_features[:30]:  # Use top 30 features
-            if item['separation_score'] > 0.3:  # Only reliable features
+        for item in self.reference_features[:30]:
+            if item['separation_score'] > 0.3:
                 self.top_features.append({
                     'name': f"{item['feature_type']}:{item['feature']}",
                     'type': item['feature_type'],
@@ -53,60 +33,42 @@ class SingleAuthorshipAnalyzer:
         
         print(f"Loaded {len(self.top_features)} discriminative features for analysis")
         
-        # Calculate expected variance for single authors
         self.calculate_single_author_variance()
     
     def calculate_single_author_variance(self):
-        """Calculate expected variance for single authors from reference data."""
         print("Calculating baseline variance thresholds...")
         
-        # Calculate baseline variance from the spread of our 33 authors
-        # Single author texts should have MUCH lower variance than the spread between different authors
         self.single_author_variance_threshold = {}
         
         for feature in self.top_features:
-            # Get the range of values across all 33 authors for this feature
             author_values = list(feature['reference_values'].values())
             
             if len(author_values) > 1:
-                # Calculate the inter-author variance (how much authors differ from each other)
                 inter_author_variance = statistics.variance(author_values)
                 inter_author_range = max(author_values) - min(author_values)
                 
-                # Single author variance should be much smaller than inter-author variance
-                # Use a fraction based on the separation score:
-                # - High separation score = authors are very different = single author should have tiny variance
-                # - Low separation score = authors are similar = single author can have more variance
-                
                 separation_factor = feature['separation_score']
                 
-                # Single author threshold: smaller fraction of inter-author variance for better separated features
                 single_author_threshold = inter_author_variance * (0.01 + 0.05 * (1 - separation_factor))
                 
                 self.single_author_variance_threshold[feature['name']] = single_author_threshold
                 
-                # Also store range-based threshold
                 range_threshold = (inter_author_range ** 2) * (0.001 + 0.01 * (1 - separation_factor))
                 
-                # Use the more restrictive threshold
                 self.single_author_variance_threshold[feature['name']] = min(single_author_threshold, range_threshold)
             else:
                 self.single_author_variance_threshold[feature['name']] = 0.001
     
     def clean_text(self, text):
-        """Clean and normalize Greek text (same as original analysis)."""
-        # Remove non-Greek characters including ALL punctuation
         greek_pattern = r'[^\u0370-\u03FF\u1F00-\u1FFF\s]'
         text = re.sub(greek_pattern, '', text)
         
-        # Normalize whitespace
         text = re.sub(r'\s+', ' ', text)
         text = text.strip().lower()
         
         return text
     
     def extract_morphological_features(self, text):
-        """Extract morphological features from text."""
         words = text.split()
         total_words = len(words)
         
@@ -115,7 +77,6 @@ class SingleAuthorshipAnalyzer:
             
         features = {}
         
-        # Greek particles
         particles = {
             'δε': ['δε', 'δέ'], 'τε': ['τε', 'τέ'], 'μεν': ['μεν', 'μέν'], 
             'γαρ': ['γαρ', 'γάρ'], 'ουν': ['ουν', 'οῦν'], 'αν': ['αν', 'ἄν'],
@@ -129,7 +90,6 @@ class SingleAuthorshipAnalyzer:
                     count += 1
             features[f'particle_{variants[1]}_freq'] = count / total_words
         
-        # Case endings
         case_endings = {
             'genitive_sg_masc': ['ου', 'οῦ'],
             'genitive_sg_fem': ['ης', 'ῆς', 'ας', 'ᾶς'],
@@ -154,24 +114,20 @@ class SingleAuthorshipAnalyzer:
         return features
     
     def extract_phonetic_features(self, text):
-        """Extract phonetic features from text."""
         total_chars = len(text.replace(' ', ''))
         if total_chars == 0:
             return {}
             
         features = {}
         
-        # Vowel frequencies
         vowels = ['α', 'ε', 'η', 'ι', 'ο', 'υ', 'ω']
         for vowel in vowels:
             features[f'vowel_{vowel}_freq'] = text.count(vowel) / total_chars
         
-        # Consonant clusters
         clusters = ['στ', 'σκ', 'πτ', 'κτ', 'φθ', 'χθ']
         for cluster in clusters:
             features[f'cluster_{cluster}_freq'] = text.count(cluster) / total_chars
         
-        # Diphthongs
         diphthongs = ['αι', 'ει', 'ου', 'αυ', 'ευ']
         for diphthong in diphthongs:
             features[f'diphthong_{diphthong}_freq'] = text.count(diphthong) / total_chars
@@ -179,7 +135,6 @@ class SingleAuthorshipAnalyzer:
         return features
     
     def extract_vocabulary_features(self, text):
-        """Extract vocabulary richness features."""
         words = text.split()
         total_words = len(words)
         unique_words = len(set(words))
@@ -189,21 +144,17 @@ class SingleAuthorshipAnalyzer:
         
         features = {}
         
-        # Type-Token Ratio
         features['ttr'] = unique_words / total_words
         
-        # Hapax legomena ratio
         word_freq = Counter(words)
         hapax_count = sum(1 for freq in word_freq.values() if freq == 1)
         features['hapax_ratio'] = hapax_count / total_words
         
-        # Average word frequency
         features['avg_word_freq'] = statistics.mean(word_freq.values())
         
         return features
     
     def extract_word_length_features(self, text):
-        """Extract word length distribution features."""
         words = text.split()
         word_lengths = [len(word) for word in words if word.strip()]
         
@@ -218,7 +169,6 @@ class SingleAuthorshipAnalyzer:
         return features
     
     def extract_all_features(self, text):
-        """Extract all discriminative features from text."""
         cleaned_text = self.clean_text(text)
         
         all_features = {}
@@ -230,7 +180,6 @@ class SingleAuthorshipAnalyzer:
         return all_features
     
     def analyze_corpus_consistency(self, corpus_features):
-        """Analyze consistency of features across corpus texts."""
         print(f"Analyzing consistency across {len(corpus_features)} texts...")
         
         consistency_scores = {}
@@ -241,7 +190,6 @@ class SingleAuthorshipAnalyzer:
             feature_type = feature_info['type']
             full_name = f"{feature_type}:{feature_name}"
             
-            # Collect values for this feature across all texts
             values = []
             for text_features in corpus_features:
                 if feature_name in text_features:
@@ -250,11 +198,9 @@ class SingleAuthorshipAnalyzer:
             if len(values) < 2:
                 continue
             
-            # Calculate variance within this corpus
             corpus_variance = statistics.variance(values)
             corpus_mean = statistics.mean(values)
             
-            # Calculate coefficient of variation (normalized variance)
             cv = (statistics.stdev(values) / corpus_mean) if corpus_mean > 0 else float('inf')
             
             feature_variances[full_name] = {
@@ -267,16 +213,11 @@ class SingleAuthorshipAnalyzer:
                 'separation_score': feature_info['separation_score']
             }
             
-            # Compare to expected single-author variance
             expected_variance = self.single_author_variance_threshold.get(full_name, 0.001)
             
-            # Calculate consistency score with more nuanced approach
             if corpus_variance <= expected_variance:
-                # Variance is within expected range for single author
                 consistency_score = 1.0
             else:
-                # Variance exceeds single author expectation
-                # Use exponential decay so high variance gets penalized heavily
                 ratio = corpus_variance / expected_variance
                 consistency_score = max(0, np.exp(-ratio + 1))
             
@@ -285,10 +226,8 @@ class SingleAuthorshipAnalyzer:
         return consistency_scores, feature_variances
     
     def calculate_single_authorship_probability(self, consistency_scores, feature_variances):
-        """Calculate overall probability of single authorship."""
         print("Calculating single authorship probability...")
         
-        # Weight scores by feature reliability (separation score)
         weighted_scores = []
         weights = []
         
@@ -303,15 +242,12 @@ class SingleAuthorshipAnalyzer:
         if not weighted_scores:
             return 0.5, "Insufficient data"
         
-        # Calculate weighted average
         total_weighted_score = sum(weighted_scores)
         total_weight = sum(weights)
         overall_consistency = total_weighted_score / total_weight
         
-        # Convert to probability (0.0 = definitely multiple authors, 1.0 = definitely single author)
         probability = max(0.0, min(1.0, overall_consistency))
         
-        # Generate interpretation
         if probability >= 0.8:
             interpretation = "Very likely single author"
         elif probability >= 0.6:
@@ -326,7 +262,6 @@ class SingleAuthorshipAnalyzer:
         return probability, interpretation
     
     def analyze_corpus(self, corpus_directory):
-        """Analyze a corpus for single authorship probability."""
         print(f"\n=== Single Authorship Analysis ===")
         print(f"Analyzing corpus: {corpus_directory}")
         
@@ -335,7 +270,6 @@ class SingleAuthorshipAnalyzer:
             print(f"Error: Directory {corpus_directory} does not exist")
             return
         
-        # Load all text files
         text_files = list(corpus_path.glob("*.txt"))
         if not text_files:
             print(f"Error: No .txt files found in {corpus_directory}")
@@ -343,7 +277,6 @@ class SingleAuthorshipAnalyzer:
         
         print(f"Found {len(text_files)} text files")
         
-        # Extract features from each text
         corpus_features = []
         text_names = []
         
@@ -354,7 +287,6 @@ class SingleAuthorshipAnalyzer:
                 with open(text_file, 'r', encoding='utf-8') as f:
                     text = f.read()
                 
-                # Check minimum length
                 word_count = len(text.split())
                 if word_count < 100:
                     print(f"  Warning: {text_file.name} has only {word_count} words (very short)")
@@ -370,19 +302,15 @@ class SingleAuthorshipAnalyzer:
             print("Error: Need at least 2 texts for comparison")
             return
         
-        # Analyze consistency
         consistency_scores, feature_variances = self.analyze_corpus_consistency(corpus_features)
         
-        # Calculate probability
         probability, interpretation = self.calculate_single_authorship_probability(consistency_scores, feature_variances)
         
-        # Generate report
         self.generate_report(probability, interpretation, consistency_scores, feature_variances, text_names)
         
         return probability, interpretation
     
     def generate_report(self, probability, interpretation, consistency_scores, feature_variances, text_names):
-        """Generate detailed analysis report."""
         print(f"\n{'='*50}")
         print(f"SINGLE AUTHORSHIP ANALYSIS RESULTS")
         print(f"{'='*50}")
@@ -395,7 +323,6 @@ class SingleAuthorshipAnalyzer:
             print(f"  - {name}")
         print(f"")
         
-        # Top consistent features (evidence FOR single authorship)
         print(f"TOP EVIDENCE FOR SINGLE AUTHORSHIP:")
         sorted_consistent = sorted(consistency_scores.items(), key=lambda x: x[1], reverse=True)
         for feature, score in sorted_consistent[:5]:
@@ -408,7 +335,6 @@ class SingleAuthorshipAnalyzer:
         
         print(f"")
         
-        # Top inconsistent features (evidence AGAINST single authorship)  
         print(f"TOP EVIDENCE AGAINST SINGLE AUTHORSHIP:")
         sorted_inconsistent = sorted(consistency_scores.items(), key=lambda x: x[1])
         for feature, score in sorted_inconsistent[:5]:
@@ -422,7 +348,6 @@ class SingleAuthorshipAnalyzer:
         print(f"")
         print(f"{'='*50}")
         
-        # Save detailed results
         results = {
             'probability': probability,
             'interpretation': interpretation,
@@ -443,7 +368,6 @@ class SingleAuthorshipAnalyzer:
         print(f"Detailed results saved to: {output_file}")
 
 def main():
-    """Main execution function."""
     import sys
     
     if len(sys.argv) != 2:
@@ -458,3 +382,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

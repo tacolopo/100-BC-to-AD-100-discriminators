@@ -1,11 +1,4 @@
 #!/usr/bin/env python3
-"""
-Test Single Authorship Analysis
-===============================
-
-This script demonstrates how the single authorship analyzer would work
-using some of our existing texts to simulate the Pauline letters scenario.
-"""
 
 import os
 import shutil
@@ -13,36 +6,30 @@ from pathlib import Path
 from single_authorship_analyzer import SingleAuthorshipAnalyzer
 
 def create_test_corpus():
-    """Create test corpora to demonstrate the analysis."""
     
-    # Create test directories
     test_dir = Path("test_corpora")
     test_dir.mkdir(exist_ok=True)
     
-    # Test 1: Single author corpus (Dionysius of Halicarnassus - has 14 texts)
     single_author_dir = test_dir / "single_author_test"
     single_author_dir.mkdir(exist_ok=True)
     
     dionysius_dir = Path("Dionysius of Halicarnassus")
     if dionysius_dir.exists():
-        # Copy some texts from Dionysius (single author)
-        texts = list(dionysius_dir.glob("*.txt"))[:5]  # Take first 5 texts
+        texts = list(dionysius_dir.glob("*.txt"))[:5]
         for i, text_file in enumerate(texts):
             dest = single_author_dir / f"text_{i+1:02d}.txt"
             shutil.copy2(text_file, dest)
         print(f"Created single author test corpus with {len(texts)} texts from Dionysius")
     
-    # Test 2: Multiple author corpus (mix different authors)
     multi_author_dir = test_dir / "multiple_author_test"
     multi_author_dir.mkdir(exist_ok=True)
     
-    # Collect texts from different authors
     author_dirs = ["Homer", "Strabo", "Chariton", "Cebes", "Longinus"]
     text_count = 0
     for author in author_dirs:
         author_path = Path(author)
         if author_path.exists():
-            texts = list(author_path.glob("*.txt"))[:1]  # Take 1 text per author
+            texts = list(author_path.glob("*.txt"))[:1]
             for text_file in texts:
                 dest = multi_author_dir / f"{author}_{text_file.name}"
                 shutil.copy2(text_file, dest)
@@ -52,29 +39,23 @@ def create_test_corpus():
     return single_author_dir, multi_author_dir
 
 def main():
-    """Run test analysis."""
     print("=== Testing Single Authorship Analyzer ===")
     print()
     
-    # Create test corpora
     single_dir, multi_dir = create_test_corpus()
     
-    # Initialize analyzer
     analyzer = SingleAuthorshipAnalyzer()
     
-    # Test 1: Single author corpus
     print("\n" + "="*60)
     print("TEST 1: EXPECTED SINGLE AUTHOR (Dionysius texts)")
     print("="*60)
     prob1, interp1 = analyzer.analyze_corpus(single_dir)
     
-    # Test 2: Multiple author corpus  
     print("\n" + "="*60)
     print("TEST 2: EXPECTED MULTIPLE AUTHORS (Mixed authors)")
     print("="*60)
     prob2, interp2 = analyzer.analyze_corpus(multi_dir)
     
-    # Summary
     print("\n" + "="*60)
     print("SUMMARY OF TESTS")
     print("="*60)
@@ -85,7 +66,6 @@ def main():
     print("- Single author test should show HIGH probability (>60%)")
     print("- Multiple author test should show LOW probability (<40%)")
     
-    # Usage example for Pauline letters
     print("\n" + "="*60)
     print("TO ANALYZE PAULINE LETTERS:")
     print("="*60)
@@ -112,3 +92,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

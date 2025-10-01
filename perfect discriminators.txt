@@ -1,0 +1,1412 @@
+================================================================================
+PERFECT DISCRIMINATORS FOR 33 ANCIENT GREEK AUTHORS (100 BC - AD 100)
+================================================================================
+
+This file lists all linguistic features that PERFECTLY discriminate between
+all 33 authors - meaning each author has a unique value for each feature.
+
+Total Perfect Discriminators Found: 60
+
+SUMMARY BY FEATURE TYPE:
+--------------------------------------------------------------------------------
+  MORPHOLOGICAL: 15 features
+  PHONETIC: 23 features
+  VOCABULARY: 5 features
+  WORD_LENGTHS: 17 features
+
+
+================================================================================
+MORPHOLOGICAL FEATURES (15 features)
+================================================================================
+
+1. particle_δέ_freq
+   Separation Score: 0.8776
+
+   Value Range: 0.000000 - 0.007166
+   Mean: 0.002023
+   Std Dev: 0.001686
+
+   Lowest Values:
+      Didymus Chalcenterus: 0.00000000
+      Brutus: 0.00025833
+      Comarius: 0.00043253
+      Philodemus: 0.00058233
+      Heron of Alexandria: 0.00065959
+
+   Highest Values:
+      Aristonicus of Alexandria: 0.00383232
+      Homer: 0.00465333
+      Tryphon: 0.00543294
+      Arius Didymus: 0.00608967
+      Bion of Phlossa: 0.00716648
+
+--------------------------------------------------------------------------------
+
+2. particle_τε_freq
+   Separation Score: 0.7676
+
+   Value Range: 0.000000 - 0.020677
+   Mean: 0.005884
+   Std Dev: 0.004267
+
+   Lowest Values:
+      Isidorus of Charax: 0.00000000
+      Polemon of Laodicea: 0.00082508
+      Comarius: 0.00129758
+      Geminus: 0.00150464
+      Heron of Alexandria: 0.00193361
+
+   Highest Values:
+      Flavius Josephus: 0.00963464
+      Dionysius of Halicarnassus: 0.01101407
+      Parthenius of Nicaea: 0.01312977
+      Lesbonax: 0.01457452
+      Scymnus: 0.02067736
+
+--------------------------------------------------------------------------------
+
+3. dative_pl_freq
+   Separation Score: 0.5886
+
+   Value Range: 0.000000 - 0.036425
+   Mean: 0.017247
+   Std Dev: 0.009467
+
+   Lowest Values:
+      Lesbonax: 0.00000000
+      Didymus Chalcenterus: 0.00152555
+      Isidorus of Charax: 0.00327600
+      Tryphon: 0.00441426
+      Bion of Phlossa: 0.00496141
+
+   Highest Values:
+      Adamantius: 0.02930529
+      Flavius Josephus: 0.02995019
+      Dionysius of Halicarnassus: 0.03285653
+      Onasander: 0.03298969
+      Brutus: 0.03642470
+
+--------------------------------------------------------------------------------
+
+4. accusative_sg_fem_freq
+   Separation Score: 0.5706
+
+   Value Range: 0.001237 - 0.021069
+   Mean: 0.009671
+   Std Dev: 0.005137
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.00123681
+      Bion of Phlossa: 0.00220507
+      Didymus Chalcenterus: 0.00381388
+      Heron of Alexandria: 0.00396660
+      Adamantius: 0.00448199
+
+   Highest Values:
+      Chariton: 0.01632825
+      Scymnus: 0.01782531
+      Xenophon of Ephesus: 0.01796553
+      Homer: 0.02000931
+      Parthenius of Nicaea: 0.02106870
+
+--------------------------------------------------------------------------------
+
+5. genitive_sg_masc_freq
+   Separation Score: 0.4965
+
+   Value Range: 0.001103 - 0.076391
+   Mean: 0.033635
+   Std Dev: 0.015410
+
+   Lowest Values:
+      Bion of Phlossa: 0.00110254
+      Lesbonax: 0.01316408
+      Homer: 0.01395998
+      Brutus: 0.01704986
+      Adamantius: 0.01766937
+
+   Highest Values:
+      Comarius: 0.05320069
+      Heron of Alexandria: 0.05522526
+      Geminus: 0.05707907
+      Clement of Rome: 0.06325358
+      Theodosius of Bithynia: 0.07639142
+
+--------------------------------------------------------------------------------
+
+6. aorist_3sg_freq
+   Separation Score: 0.4420
+
+   Value Range: 0.016018 - 0.097255
+   Mean: 0.041149
+   Std Dev: 0.016646
+
+   Lowest Values:
+      Didymus Chalcenterus: 0.01601831
+      Pedianus Discorides: 0.01744884
+      Theodosius of Bithynia: 0.02135322
+      Geminus: 0.02140465
+      Adamantius: 0.02301327
+
+   Highest Values:
+      Lesbonax: 0.05876822
+      Brutus: 0.06019117
+      Aristonicus of Alexandria: 0.06302694
+      Bion of Phlossa: 0.07221610
+      Homer: 0.09725454
+
+--------------------------------------------------------------------------------
+
+7. present_3sg_freq
+   Separation Score: 0.3913
+
+   Value Range: 0.007821 - 0.037140
+   Mean: 0.016092
+   Std Dev: 0.005705
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.00782103
+      Homer: 0.00791066
+      Brutus: 0.00929992
+      Arius Didymus: 0.01006953
+      Asclepiodotus Tacticus: 0.01066867
+
+   Highest Values:
+      Xenophon of Ephesus: 0.02112163
+      Longinus: 0.02152657
+      Cebes: 0.02479339
+      Didymus Chalcenterus: 0.02593440
+      Pedianus Discorides: 0.03714043
+
+--------------------------------------------------------------------------------
+
+8. accusative_pl_freq
+   Separation Score: 0.3793
+
+   Value Range: 0.000000 - 0.050062
+   Mean: 0.030541
+   Std Dev: 0.010467
+
+   Lowest Values:
+      Lesbonax: 0.00000000
+      Comarius: 0.01600346
+      Philodemus: 0.01603655
+      Heron of Alexandria: 0.01727596
+      Aristonicus of Alexandria: 0.01904369
+
+   Highest Values:
+      Brutus: 0.04184965
+      Strabo: 0.04255349
+      Dionysius of Halicarnassus: 0.04357104
+      Flavius Josephus: 0.04632887
+      Onasander: 0.05006186
+
+--------------------------------------------------------------------------------
+
+9. genitive_sg_fem_freq
+   Separation Score: 0.3759
+
+   Value Range: 0.000000 - 0.067941
+   Mean: 0.044569
+   Std Dev: 0.015126
+
+   Lowest Values:
+      Lesbonax: 0.00000000
+      Didymus Chalcenterus: 0.00991609
+      Bion of Phlossa: 0.02315325
+      Philodemus: 0.02857911
+      Adamantius: 0.02913291
+
+   Highest Values:
+      Strabo: 0.06026543
+      Clement of Rome: 0.06218042
+      Flavius Josephus: 0.06334514
+      Polemon of Laodicea: 0.06468647
+      Brutus: 0.06794110
+
+--------------------------------------------------------------------------------
+
+10. nominative_pl_freq
+   Separation Score: 0.3285
+
+   Value Range: 0.028713 - 0.097461
+   Mean: 0.048191
+   Std Dev: 0.014108
+
+   Lowest Values:
+      Polemon of Laodicea: 0.02871287
+      Homer: 0.02885063
+      Theodosius of Bithynia: 0.03361222
+      Pedianus Discorides: 0.03411034
+      Tryphon: 0.03497453
+
+   Highest Values:
+      Lesbonax: 0.06488011
+      Adamantius: 0.06671264
+      Cebes: 0.06781098
+      Didymus Chalcenterus: 0.06788711
+      Isidorus of Charax: 0.09746110
+
+--------------------------------------------------------------------------------
+
+11. infinitive_freq
+   Separation Score: 0.3263
+
+   Value Range: 0.020009 - 0.074168
+   Mean: 0.046428
+   Std Dev: 0.013492
+
+   Lowest Values:
+      Homer: 0.02000931
+      Theodosius of Bithynia: 0.02095307
+      Polemon of Laodicea: 0.03052805
+      Pedianus Discorides: 0.03234478
+      Bion of Phlossa: 0.03362734
+
+   Highest Values:
+      Philodemus: 0.06437018
+      Arius Didymus: 0.06444498
+      Musonius Rufus: 0.06675182
+      Onasander: 0.07026804
+      Cebes: 0.07416826
+
+--------------------------------------------------------------------------------
+
+12. genitive_pl_freq
+   Separation Score: 0.3255
+
+   Value Range: 0.022051 - 0.076591
+   Mean: 0.052968
+   Std Dev: 0.015348
+
+   Lowest Values:
+      Bion of Phlossa: 0.02205072
+      Cebes: 0.02564103
+      Isidorus of Charax: 0.02784603
+      Aristonicus of Alexandria: 0.03160191
+      Homer: 0.03303862
+
+   Highest Values:
+      Aelius Theon: 0.06991489
+      Geminus: 0.07071786
+      Didymus Chalcenterus: 0.07398932
+      Lesbonax: 0.07616361
+      Dionysius of Halicarnassus: 0.07659096
+
+--------------------------------------------------------------------------------
+
+13. participle_nom_sg_freq
+   Separation Score: 0.2705
+
+   Value Range: 0.015681 - 0.044920
+   Mean: 0.028614
+   Std Dev: 0.006742
+
+   Lowest Values:
+      Cebes: 0.01568129
+      Aristonicus of Alexandria: 0.02039974
+      Isidorus of Charax: 0.02047502
+      Clement of Rome: 0.02070576
+      Comarius: 0.02119377
+
+   Highest Values:
+      Strabo: 0.03627132
+      Didymus Chalcenterus: 0.03661327
+      Aelius Theon: 0.03769324
+      Dionysius of Halicarnassus: 0.04046908
+      Scymnus: 0.04491979
+
+--------------------------------------------------------------------------------
+
+14. accusative_sg_masc_freq
+   Separation Score: 0.2636
+
+   Value Range: 0.011466 - 0.065050
+   Mean: 0.044789
+   Std Dev: 0.010250
+
+   Lowest Values:
+      Isidorus of Charax: 0.01146601
+      Theodosius of Bithynia: 0.02902874
+      Lesbonax: 0.03338035
+      Clement of Rome: 0.03345748
+      Onasander: 0.03694845
+
+   Highest Values:
+      Pedianus Discorides: 0.05769093
+      Tryphon: 0.05806452
+      Arius Didymus: 0.05864301
+      Homer: 0.06095859
+      Bion of Phlossa: 0.06504961
+
+--------------------------------------------------------------------------------
+
+15. dative_sg_freq
+   Separation Score: 0.1835
+
+   Value Range: 0.069335 - 0.141979
+   Mean: 0.106089
+   Std Dev: 0.015900
+
+   Lowest Values:
+      Homer: 0.06933457
+      Theodosius of Bithynia: 0.07897417
+      Flavius Josephus: 0.08665186
+      Polemon of Laodicea: 0.08811881
+      Arius Didymus: 0.09100935
+
+   Highest Values:
+      Pedianus Discorides: 0.12209418
+      Adamantius: 0.12342700
+      Aristonicus of Alexandria: 0.13407228
+      Isidorus of Charax: 0.13677314
+      Cebes: 0.14197923
+
+--------------------------------------------------------------------------------
+
+================================================================================
+PHONETIC FEATURES (23 features)
+================================================================================
+
+1. cluster_νθ_freq
+   Separation Score: 0.7858
+
+   Value Range: 0.000000 - 0.003465
+   Mean: 0.001008
+   Std Dev: 0.000749
+
+   Lowest Values:
+      Didymus Chalcenterus: 0.00000000
+      Theodosius of Bithynia: 0.00008064
+      Asclepiodotus Tacticus: 0.00009138
+      Geminus: 0.00018175
+      Philodemus: 0.00034717
+
+   Highest Values:
+      Comarius: 0.00177399
+      Pedianus Discorides: 0.00182120
+      Parthenius of Nicaea: 0.00206020
+      Isidorus of Charax: 0.00310559
+      Xenophon of Ephesus: 0.00346470
+
+--------------------------------------------------------------------------------
+
+2. cluster_κτ_freq
+   Separation Score: 0.7146
+
+   Value Range: 0.000256 - 0.005180
+   Mean: 0.001237
+   Std Dev: 0.000832
+
+   Lowest Values:
+      Polemon of Laodicea: 0.00025586
+      Theodosius of Bithynia: 0.00025983
+      Brutus: 0.00043653
+      Cebes: 0.00064747
+      Philodemus: 0.00066693
+
+   Highest Values:
+      Geminus: 0.00178877
+      Homer: 0.00184259
+      Isidorus of Charax: 0.00186335
+      Scymnus: 0.00225367
+      Didymus Chalcenterus: 0.00517962
+
+--------------------------------------------------------------------------------
+
+3. cluster_χθ_freq
+   Separation Score: 0.7120
+
+   Value Range: 0.000043 - 0.001141
+   Mean: 0.000392
+   Std Dev: 0.000263
+
+   Lowest Values:
+      Cebes: 0.00004316
+      Musonius Rufus: 0.00012131
+      Polemon of Laodicea: 0.00012793
+      Asclepiodotus Tacticus: 0.00015230
+      Isidorus of Charax: 0.00015528
+
+   Highest Values:
+      Chion of Heraclea: 0.00080775
+      Theodosius of Bithynia: 0.00087805
+      Bion of Phlossa: 0.00089536
+      Brutus: 0.00092157
+      Homer: 0.00114065
+
+--------------------------------------------------------------------------------
+
+4. cluster_πτ_freq
+   Separation Score: 0.5958
+
+   Value Range: 0.000097 - 0.002106
+   Mean: 0.000833
+   Std Dev: 0.000463
+
+   Lowest Values:
+      Brutus: 0.00009701
+      Isidorus of Charax: 0.00015528
+      Lesbonax: 0.00017913
+      Parthenius of Nicaea: 0.00034337
+      Musonius Rufus: 0.00038600
+
+   Highest Values:
+      Bion of Phlossa: 0.00123111
+      Adamantius: 0.00129813
+      Pedianus Discorides: 0.00177339
+      Theodosius of Bithynia: 0.00203385
+      Homer: 0.00210582
+
+--------------------------------------------------------------------------------
+
+5. cluster_σπ_freq
+   Separation Score: 0.5674
+
+   Value Range: 0.000000 - 0.001775
+   Mean: 0.000783
+   Std Dev: 0.000413
+
+   Lowest Values:
+      Didymus Chalcenterus: 0.00000000
+      Lesbonax: 0.00017913
+      Philodemus: 0.00019186
+      Theodosius of Bithynia: 0.00022399
+      Geminus: 0.00024871
+
+   Highest Values:
+      Chariton: 0.00118256
+      Comarius: 0.00133049
+      Asclepiodotus Tacticus: 0.00152300
+      Cebes: 0.00164026
+      Pedianus Discorides: 0.00177484
+
+--------------------------------------------------------------------------------
+
+6. diphthong_αυ_freq
+   Separation Score: 0.5523
+
+   Value Range: 0.000000 - 0.001863
+   Mean: 0.000766
+   Std Dev: 0.000393
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.00000000
+      Asclepiodotus Tacticus: 0.00009138
+      Onasander: 0.00024297
+      Comarius: 0.00035480
+      Aelius Theon: 0.00043747
+
+   Highest Values:
+      Chariton: 0.00112303
+      Polemon of Laodicea: 0.00121534
+      Pedianus Discorides: 0.00122572
+      Chion of Heraclea: 0.00153473
+      Isidorus of Charax: 0.00186335
+
+--------------------------------------------------------------------------------
+
+7. cluster_σκ_freq
+   Separation Score: 0.5164
+
+   Value Range: 0.000000 - 0.001951
+   Mean: 0.000966
+   Std Dev: 0.000461
+
+   Lowest Values:
+      Lesbonax: 0.00000000
+      Theodosius of Bithynia: 0.00018815
+      Didymus Chalcenterus: 0.00033417
+      Cebes: 0.00043165
+      Polemon of Laodicea: 0.00044776
+
+   Highest Values:
+      Pedianus Discorides: 0.00155461
+      Bion of Phlossa: 0.00156687
+      Musonius Rufus: 0.00166531
+      Adamantius: 0.00175248
+      Comarius: 0.00195139
+
+--------------------------------------------------------------------------------
+
+8. cluster_μπ_freq
+   Separation Score: 0.4401
+
+   Value Range: 0.000000 - 0.001033
+   Mean: 0.000535
+   Std Dev: 0.000215
+
+   Lowest Values:
+      Didymus Chalcenterus: 0.00000000
+      Comarius: 0.00008870
+      Tryphon: 0.00025689
+      Brutus: 0.00029102
+      Isidorus of Charax: 0.00031056
+
+   Highest Values:
+      Longinus: 0.00075949
+      Aelius Theon: 0.00077399
+      Asclepiodotus Tacticus: 0.00079196
+      Lesbonax: 0.00080609
+      Onasander: 0.00103263
+
+--------------------------------------------------------------------------------
+
+9. cluster_στ_freq
+   Separation Score: 0.4324
+
+   Value Range: 0.000000 - 0.014766
+   Mean: 0.006593
+   Std Dev: 0.002604
+
+   Lowest Values:
+      Lesbonax: 0.00000000
+      Parthenius of Nicaea: 0.00331922
+      Xenophon of Ephesus: 0.00369092
+      Bion of Phlossa: 0.00380526
+      Philodemus: 0.00383716
+
+   Highest Values:
+      Onasander: 0.00867109
+      Heron of Alexandria: 0.00980476
+      Didymus Chalcenterus: 0.01086048
+      Asclepiodotus Tacticus: 0.01136156
+      Theodosius of Bithynia: 0.01476557
+
+--------------------------------------------------------------------------------
+
+10. diphthong_ευ_freq
+   Separation Score: 0.3703
+
+   Value Range: 0.000466 - 0.001952
+   Mean: 0.001166
+   Std Dev: 0.000389
+
+   Lowest Values:
+      Isidorus of Charax: 0.00046584
+      Didymus Chalcenterus: 0.00050125
+      Geminus: 0.00058350
+      Scymnus: 0.00059656
+      Adamantius: 0.00077888
+
+   Highest Values:
+      Heron of Alexandria: 0.00161065
+      Lesbonax: 0.00179131
+      Chion of Heraclea: 0.00185784
+      Pedianus Discorides: 0.00187770
+      Aelius Theon: 0.00195181
+
+--------------------------------------------------------------------------------
+
+11. diphthong_οι_freq
+   Separation Score: 0.3400
+
+   Value Range: 0.003525 - 0.013199
+   Mean: 0.006487
+   Std Dev: 0.001972
+
+   Lowest Values:
+      Heron of Alexandria: 0.00352479
+      Comarius: 0.00425758
+      Parthenius of Nicaea: 0.00443516
+      Xenophon of Ephesus: 0.00467913
+      Arius Didymus: 0.00518503
+
+   Highest Values:
+      Homer: 0.00728262
+      Lesbonax: 0.00797134
+      Brutus: 0.00936121
+      Adamantius: 0.01254320
+      Isidorus of Charax: 0.01319876
+
+--------------------------------------------------------------------------------
+
+12. diphthong_αι_freq
+   Separation Score: 0.2814
+
+   Value Range: 0.004475 - 0.014115
+   Mean: 0.008717
+   Std Dev: 0.002147
+
+   Lowest Values:
+      Homer: 0.00447486
+      Theodosius of Bithynia: 0.00586860
+      Xenophon of Ephesus: 0.00641743
+      Tryphon: 0.00642220
+      Scymnus: 0.00656216
+
+   Highest Values:
+      Geminus: 0.01155527
+      Arius Didymus: 0.01162791
+      Lesbonax: 0.01191223
+      Didymus Chalcenterus: 0.01203008
+      Cebes: 0.01411490
+
+--------------------------------------------------------------------------------
+
+13. vowel_η_freq
+   Separation Score: 0.2565
+
+   Value Range: 0.005708 - 0.017276
+   Mean: 0.013445
+   Std Dev: 0.002982
+
+   Lowest Values:
+      Bion of Phlossa: 0.00570789
+      Didymus Chalcenterus: 0.00584795
+      Lesbonax: 0.00815047
+      Asclepiodotus Tacticus: 0.00983856
+      Heron of Alexandria: 0.01087787
+
+   Highest Values:
+      Scymnus: 0.01673682
+      Isidorus of Charax: 0.01692547
+      Parthenius of Nicaea: 0.01702529
+      Chariton: 0.01712726
+      Tryphon: 0.01727570
+
+--------------------------------------------------------------------------------
+
+14. diphthong_ου_freq
+   Separation Score: 0.2521
+
+   Value Range: 0.002015 - 0.010232
+   Mean: 0.007273
+   Std Dev: 0.001582
+
+   Lowest Values:
+      Bion of Phlossa: 0.00201455
+      Homer: 0.00465035
+      Aristonicus of Alexandria: 0.00485472
+      Asclepiodotus Tacticus: 0.00554371
+      Chion of Heraclea: 0.00597738
+
+   Highest Values:
+      Heron of Alexandria: 0.00876735
+      Flavius Josephus: 0.00883294
+      Strabo: 0.00922120
+      Pedianus Discorides: 0.00994197
+      Theodosius of Bithynia: 0.01023197
+
+--------------------------------------------------------------------------------
+
+15. cluster_ντ_freq
+   Separation Score: 0.2409
+
+   Value Range: 0.002697 - 0.009942
+   Mean: 0.006671
+   Std Dev: 0.001377
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.00269687
+      Pedianus Discorides: 0.00485363
+      Parthenius of Nicaea: 0.00492160
+      Arius Didymus: 0.00517543
+      Chariton: 0.00532151
+
+   Highest Values:
+      Dionysius of Halicarnassus: 0.00801868
+      Brutus: 0.00810011
+      Aristonicus of Alexandria: 0.00873362
+      Onasander: 0.00900518
+      Lesbonax: 0.00994178
+
+--------------------------------------------------------------------------------
+
+16. diphthong_ει_freq
+   Separation Score: 0.1960
+
+   Value Range: 0.005435 - 0.009894
+   Mean: 0.007099
+   Std Dev: 0.001152
+
+   Lowest Values:
+      Isidorus of Charax: 0.00543478
+      Theodosius of Bithynia: 0.00551021
+      Asclepiodotus Tacticus: 0.00557417
+      Strabo: 0.00569740
+      Heron of Alexandria: 0.00578804
+
+   Highest Values:
+      Musonius Rufus: 0.00870150
+      Onasander: 0.00888369
+      Philodemus: 0.00899905
+      Didymus Chalcenterus: 0.00985798
+      Xenophon of Ephesus: 0.00989404
+
+--------------------------------------------------------------------------------
+
+17. vowel_ω_freq
+   Separation Score: 0.1858
+
+   Value Range: 0.009846 - 0.017519
+   Mean: 0.012782
+   Std Dev: 0.001945
+
+   Lowest Values:
+      Xenophon of Ephesus: 0.00984641
+      Cebes: 0.01001424
+      Isidorus of Charax: 0.01009317
+      Pedianus Discorides: 0.01009845
+      Polemon of Laodicea: 0.01045831
+
+   Highest Values:
+      Didymus Chalcenterus: 0.01453634
+      Onasander: 0.01485171
+      Theodosius of Bithynia: 0.01608264
+      Bion of Phlossa: 0.01678791
+      Heron of Alexandria: 0.01751884
+
+--------------------------------------------------------------------------------
+
+18. vowel_υ_freq
+   Separation Score: 0.1684
+
+   Value Range: 0.012820 - 0.023752
+   Mean: 0.016427
+   Std Dev: 0.002218
+
+   Lowest Values:
+      Aristonicus of Alexandria: 0.01281989
+      Bion of Phlossa: 0.01309457
+      Theodosius of Bithynia: 0.01338578
+      Arius Didymus: 0.01350028
+      Isidorus of Charax: 0.01397516
+
+   Highest Values:
+      Parthenius of Nicaea: 0.01805540
+      Flavius Josephus: 0.01817211
+      Strabo: 0.01859791
+      Adamantius: 0.02028332
+      Pedianus Discorides: 0.02375236
+
+--------------------------------------------------------------------------------
+
+19. vowel_ι_freq
+   Separation Score: 0.1523
+
+   Value Range: 0.037641 - 0.062267
+   Mean: 0.048195
+   Std Dev: 0.005746
+
+   Lowest Values:
+      Homer: 0.03764148
+      Xenophon of Ephesus: 0.03827837
+      Polemon of Laodicea: 0.04058592
+      Theodosius of Bithynia: 0.04128625
+      Flavius Josephus: 0.04146698
+
+   Highest Values:
+      Aristonicus of Alexandria: 0.05291405
+      Geminus: 0.05501191
+      Didymus Chalcenterus: 0.05864662
+      Philodemus: 0.05964954
+      Isidorus of Charax: 0.06226708
+
+--------------------------------------------------------------------------------
+
+20. vowel_α_freq
+   Separation Score: 0.1216
+
+   Value Range: 0.057644 - 0.087578
+   Mean: 0.073493
+   Std Dev: 0.006538
+
+   Lowest Values:
+      Didymus Chalcenterus: 0.05764411
+      Aristonicus of Alexandria: 0.05993999
+      Heron of Alexandria: 0.06564209
+      Theodosius of Bithynia: 0.06570141
+      Scymnus: 0.06575415
+
+   Highest Values:
+      Adamantius: 0.08087364
+      Cebes: 0.08231536
+      Pedianus Discorides: 0.08323614
+      Comarius: 0.08444208
+      Isidorus of Charax: 0.08757764
+
+--------------------------------------------------------------------------------
+
+21. vowel_ε_freq
+   Separation Score: 0.1143
+
+   Value Range: 0.046584 - 0.067174
+   Mean: 0.053861
+   Std Dev: 0.004407
+
+   Lowest Values:
+      Isidorus of Charax: 0.04658385
+      Strabo: 0.04696161
+      Geminus: 0.04703418
+      Pedianus Discorides: 0.04852037
+      Asclepiodotus Tacticus: 0.04852269
+
+   Highest Values:
+      Bion of Phlossa: 0.05741466
+      Xenophon of Ephesus: 0.05836409
+      Homer: 0.06089322
+      Brutus: 0.06116312
+      Lesbonax: 0.06717421
+
+--------------------------------------------------------------------------------
+
+22. vowel_ο_freq
+   Separation Score: 0.0943
+
+   Value Range: 0.055577 - 0.074545
+   Mean: 0.066448
+   Std Dev: 0.004128
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.05557696
+      Comarius: 0.05934007
+      Bion of Phlossa: 0.06099608
+      Arius Didymus: 0.06101050
+      Pedianus Discorides: 0.06119631
+
+   Highest Values:
+      Homer: 0.07124682
+      Didymus Chalcenterus: 0.07284879
+      Brutus: 0.07294951
+      Musonius Rufus: 0.07339480
+      Adamantius: 0.07454525
+
+--------------------------------------------------------------------------------
+
+23. vowel_ratio
+   Separation Score: 0.0579
+
+   Value Range: 0.321671 - 0.368540
+   Mean: 0.351565
+   Std Dev: 0.009213
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.32167080
+      Asclepiodotus Tacticus: 0.33713067
+      Didymus Chalcenterus: 0.34051796
+      Comarius: 0.34069541
+      Heron of Alexandria: 0.34106791
+
+   Highest Values:
+      Isidorus of Charax: 0.36086957
+      Bion of Phlossa: 0.36373811
+      Tryphon: 0.36484490
+      Pedianus Discorides: 0.36564934
+      Adamantius: 0.36853976
+
+--------------------------------------------------------------------------------
+
+================================================================================
+VOCABULARY FEATURES (5 features)
+================================================================================
+
+1. avg_word_freq
+   Separation Score: 0.7813
+
+   Value Range: 1.648006 - 17.587972
+   Mean: 4.203900
+   Std Dev: 3.105190
+
+   Lowest Values:
+      Homer: 1.64800613
+      Bion of Phlossa: 1.66269478
+      Tryphon: 2.01850583
+      Lesbonax: 2.10594059
+      Isidorus of Charax: 2.11611785
+
+   Highest Values:
+      Philo of Alexandria: 6.81977229
+      Dionysius of Halicarnassus: 7.97067761
+      Flavius Josephus: 8.00740132
+      Heron of Alexandria: 9.55074215
+      Theodosius of Bithynia: 17.58797185
+
+--------------------------------------------------------------------------------
+
+2. hapax_ratio
+   Separation Score: 0.5617
+
+   Value Range: 0.017534 - 0.485116
+   Mean: 0.226392
+   Std Dev: 0.118264
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.01753365
+      Heron of Alexandria: 0.05684262
+      Dionysius of Halicarnassus: 0.07128817
+      Flavius Josephus: 0.07240851
+      Philo of Alexandria: 0.08663285
+
+   Highest Values:
+      Isidorus of Charax: 0.35298935
+      Lesbonax: 0.35825106
+      Tryphon: 0.38370119
+      Homer: 0.47184737
+      Bion of Phlossa: 0.48511577
+
+--------------------------------------------------------------------------------
+
+3. ttr
+   Separation Score: 0.4698
+
+   Value Range: 0.056857 - 0.606794
+   Mean: 0.319857
+   Std Dev: 0.138126
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.05685704
+      Heron of Alexandria: 0.10470391
+      Flavius Josephus: 0.12488446
+      Dionysius of Halicarnassus: 0.12545985
+      Philo of Alexandria: 0.14663246
+
+   Highest Values:
+      Isidorus of Charax: 0.47256347
+      Lesbonax: 0.47484720
+      Tryphon: 0.49541596
+      Bion of Phlossa: 0.60143330
+      Homer: 0.60679386
+
+--------------------------------------------------------------------------------
+
+4. dis_ratio
+   Separation Score: 0.4241
+
+   Value Range: 0.008658 - 0.084691
+   Mean: 0.041656
+   Std Dev: 0.016116
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.00865769
+      Heron of Alexandria: 0.01573992
+      Flavius Josephus: 0.01869801
+      Dionysius of Halicarnassus: 0.01949309
+      Philo of Alexandria: 0.02216362
+
+   Highest Values:
+      Parthenius of Nicaea: 0.05603053
+      Bion of Phlossa: 0.06394708
+      Tryphon: 0.06519525
+      Adamantius: 0.06636787
+      Homer: 0.08469055
+
+--------------------------------------------------------------------------------
+
+5. top10_ratio
+   Separation Score: 0.2020
+
+   Value Range: 0.139134 - 0.275519
+   Mean: 0.197500
+   Std Dev: 0.033213
+
+   Lowest Values:
+      Homer: 0.13913448
+      Bion of Phlossa: 0.13947078
+      Brutus: 0.15809868
+      Scymnus: 0.16577540
+      Aristonicus of Alexandria: 0.16691233
+
+   Highest Values:
+      Theodosius of Bithynia: 0.24376137
+      Arius Didymus: 0.24459362
+      Isidorus of Charax: 0.25307125
+      Didymus Chalcenterus: 0.25934401
+      Comarius: 0.27551903
+
+--------------------------------------------------------------------------------
+
+================================================================================
+WORD_LENGTHS FEATURES (17 features)
+================================================================================
+
+1. length_15_freq
+   Separation Score: 0.5944
+
+   Value Range: 0.000000 - 0.004577
+   Mean: 0.001806
+   Std Dev: 0.001001
+
+   Lowest Values:
+      Bion of Phlossa: 0.00000000
+      Theodosius of Bithynia: 0.00021826
+      Comarius: 0.00043253
+      Homer: 0.00046533
+      Polemon of Laodicea: 0.00066007
+
+   Highest Values:
+      Pedianus Discorides: 0.00279945
+      Onasander: 0.00321649
+      Longinus: 0.00323293
+      Asclepiodotus Tacticus: 0.00330579
+      Didymus Chalcenterus: 0.00457666
+
+--------------------------------------------------------------------------------
+
+2. length_14_freq
+   Separation Score: 0.5152
+
+   Value Range: 0.000218 - 0.006763
+   Mean: 0.003498
+   Std Dev: 0.001667
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.00021826
+      Homer: 0.00046533
+      Bion of Phlossa: 0.00055127
+      Comarius: 0.00086505
+      Cebes: 0.00148337
+
+   Highest Values:
+      Philo of Alexandria: 0.00531515
+      Clement of Rome: 0.00536582
+      Longinus: 0.00591389
+      Pedianus Discorides: 0.00598860
+      Onasander: 0.00676289
+
+--------------------------------------------------------------------------------
+
+3. length_1_freq
+   Separation Score: 0.4538
+
+   Value Range: 0.015428 - 0.088614
+   Mean: 0.038532
+   Std Dev: 0.016032
+
+   Lowest Values:
+      Adamantius: 0.01542837
+      Lesbonax: 0.02350729
+      Chion of Heraclea: 0.02376485
+      Flavius Josephus: 0.02459048
+      Clement of Rome: 0.02575595
+
+   Highest Values:
+      Bion of Phlossa: 0.05071665
+      Homer: 0.05723592
+      Aristonicus of Alexandria: 0.06237840
+      Heron of Alexandria: 0.08787068
+      Theodosius of Bithynia: 0.08861404
+
+--------------------------------------------------------------------------------
+
+4. length_13_freq
+   Separation Score: 0.4238
+
+   Value Range: 0.000551 - 0.013974
+   Mean: 0.007656
+   Std Dev: 0.002960
+
+   Lowest Values:
+      Bion of Phlossa: 0.00055127
+      Theodosius of Bithynia: 0.00280102
+      Aristonicus of Alexandria: 0.00312482
+      Isidorus of Charax: 0.00327600
+      Comarius: 0.00346021
+
+   Highest Values:
+      Didymus Chalcenterus: 0.01067887
+      Aelius Theon: 0.01068265
+      Pedianus Discorides: 0.01132505
+      Onasander: 0.01253608
+      Asclepiodotus Tacticus: 0.01397446
+
+--------------------------------------------------------------------------------
+
+5. length_12_freq
+   Separation Score: 0.3382
+
+   Value Range: 0.002205 - 0.020784
+   Mean: 0.013016
+   Std Dev: 0.003935
+
+   Lowest Values:
+      Bion of Phlossa: 0.00220507
+      Theodosius of Bithynia: 0.00469262
+      Homer: 0.00791066
+      Polemon of Laodicea: 0.00841584
+      Comarius: 0.00865052
+
+   Highest Values:
+      Longinus: 0.01711087
+      Pedianus Discorides: 0.01714663
+      Philo of Alexandria: 0.01812276
+      Flavius Josephus: 0.01838990
+      Onasander: 0.02078351
+
+--------------------------------------------------------------------------------
+
+6. length_11_freq
+   Separation Score: 0.2816
+
+   Value Range: 0.008391 - 0.031683
+   Mean: 0.022318
+   Std Dev: 0.005501
+
+   Lowest Values:
+      Didymus Chalcenterus: 0.00839054
+      Bion of Phlossa: 0.01323043
+      Theodosius of Bithynia: 0.01462350
+      Scymnus: 0.01479501
+      Heron of Alexandria: 0.01517068
+
+   Highest Values:
+      Tryphon: 0.02750424
+      Philo of Alexandria: 0.02804884
+      Pedianus Discorides: 0.03065079
+      Onasander: 0.03158763
+      Polemon of Laodicea: 0.03168317
+
+--------------------------------------------------------------------------------
+
+7. length_7_freq
+   Separation Score: 0.2651
+
+   Value Range: 0.045767 - 0.153972
+   Mean: 0.080838
+   Std Dev: 0.018613
+
+   Lowest Values:
+      Didymus Chalcenterus: 0.04576659
+      Theodosius of Bithynia: 0.05536559
+      Comarius: 0.05882353
+      Philodemus: 0.06110016
+      Tryphon: 0.06247878
+
+   Highest Values:
+      Pedianus Discorides: 0.09495860
+      Adamantius: 0.09817273
+      Homer: 0.10563053
+      Scymnus: 0.10570410
+      Isidorus of Charax: 0.15397215
+
+--------------------------------------------------------------------------------
+
+8. length_9_freq
+   Separation Score: 0.2457
+
+   Value Range: 0.016370 - 0.070524
+   Mean: 0.053880
+   Std Dev: 0.011376
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.01636959
+      Didymus Chalcenterus: 0.03585050
+      Bion of Phlossa: 0.03748622
+      Heron of Alexandria: 0.03878960
+      Cebes: 0.03941513
+
+   Highest Values:
+      Comarius: 0.06401384
+      Onasander: 0.06680412
+      Tryphon: 0.06791171
+      Scymnus: 0.06934046
+      Brutus: 0.07052441
+
+--------------------------------------------------------------------------------
+
+9. length_10_freq
+   Separation Score: 0.2332
+
+   Value Range: 0.012967 - 0.049083
+   Mean: 0.036550
+   Std Dev: 0.007269
+
+   Lowest Values:
+      Didymus Chalcenterus: 0.01296720
+      Bion of Phlossa: 0.02535832
+      Heron of Alexandria: 0.02651029
+      Cebes: 0.02733630
+      Theodosius of Bithynia: 0.02902874
+
+   Highest Values:
+      Chariton: 0.04313519
+      Tryphon: 0.04346350
+      Flavius Josephus: 0.04397316
+      Polemon of Laodicea: 0.04719472
+      Brutus: 0.04908292
+
+--------------------------------------------------------------------------------
+
+10. length_2_freq
+   Separation Score: 0.2135
+
+   Value Range: 0.115215 - 0.244851
+   Mean: 0.146312
+   Std Dev: 0.026252
+
+   Lowest Values:
+      Bion of Phlossa: 0.11521499
+      Clement of Rome: 0.12006818
+      Flavius Josephus: 0.12007249
+      Philo of Alexandria: 0.12371672
+      Polemon of Laodicea: 0.12442244
+
+   Highest Values:
+      Brutus: 0.16869026
+      Asclepiodotus Tacticus: 0.18302029
+      Theodosius of Bithynia: 0.19538014
+      Heron of Alexandria: 0.19721886
+      Didymus Chalcenterus: 0.24485126
+
+--------------------------------------------------------------------------------
+
+11. length_5_freq
+   Separation Score: 0.2104
+
+   Value Range: 0.076864 - 0.175303
+   Mean: 0.114383
+   Std Dev: 0.020178
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.07686431
+      Brutus: 0.07775769
+      Onasander: 0.09154639
+      Tryphon: 0.09711375
+      Geminus: 0.09814105
+
+   Highest Values:
+      Aristonicus of Alexandria: 0.12982725
+      Homer: 0.14192648
+      Cebes: 0.14431024
+      Didymus Chalcenterus: 0.16170862
+      Bion of Phlossa: 0.17530320
+
+--------------------------------------------------------------------------------
+
+12. length_6_freq
+   Separation Score: 0.1879
+
+   Value Range: 0.067848 - 0.138368
+   Mean: 0.094734
+   Std Dev: 0.014612
+
+   Lowest Values:
+      Heron of Alexandria: 0.06784791
+      Isidorus of Charax: 0.07125307
+      Didymus Chalcenterus: 0.07322654
+      Asclepiodotus Tacticus: 0.07422990
+      Theodosius of Bithynia: 0.08104765
+
+   Highest Values:
+      Scymnus: 0.11229947
+      Adamantius: 0.11248061
+      Pedianus Discorides: 0.11666229
+      Homer: 0.12331317
+      Bion of Phlossa: 0.13836825
+
+--------------------------------------------------------------------------------
+
+13. length_3_freq
+   Separation Score: 0.1849
+
+   Value Range: 0.128432 - 0.282212
+   Mean: 0.207791
+   Std Dev: 0.031436
+
+   Lowest Values:
+      Homer: 0.12843183
+      Scymnus: 0.14884135
+      Bion of Phlossa: 0.16372657
+      Tryphon: 0.16808149
+      Pedianus Discorides: 0.16884976
+
+   Highest Values:
+      Clement of Rome: 0.23559119
+      Geminus: 0.23816920
+      Philodemus: 0.24776026
+      Comarius: 0.25173010
+      Theodosius of Bithynia: 0.28221171
+
+--------------------------------------------------------------------------------
+
+14. length_8_freq
+   Separation Score: 0.1739
+
+   Value Range: 0.040706 - 0.097504
+   Mean: 0.073221
+   Std Dev: 0.010283
+
+   Lowest Values:
+      Theodosius of Bithynia: 0.04070571
+      Philodemus: 0.05836768
+      Arius Didymus: 0.05917046
+      Asclepiodotus Tacticus: 0.06040571
+      Chion of Heraclea: 0.06295601
+
+   Highest Values:
+      Tryphon: 0.08353141
+      Lesbonax: 0.08368594
+      Didymus Chalcenterus: 0.08543097
+      Isidorus of Charax: 0.08763309
+      Scymnus: 0.09750446
+
+--------------------------------------------------------------------------------
+
+15. length_4_freq
+   Separation Score: 0.1693
+
+   Value Range: 0.063310 - 0.151443
+   Mean: 0.104484
+   Std Dev: 0.014202
+
+   Lowest Values:
+      Didymus Chalcenterus: 0.06331045
+      Heron of Alexandria: 0.08642500
+      Xenophon of Ephesus: 0.08764263
+      Isidorus of Charax: 0.09172809
+      Adamantius: 0.09300121
+
+   Highest Values:
+      Brutus: 0.11624903
+      Aristonicus of Alexandria: 0.11626673
+      Chion of Heraclea: 0.11778195
+      Cebes: 0.12417885
+      Tryphon: 0.15144312
+
+--------------------------------------------------------------------------------
+
+16. avg_length
+   Separation Score: 0.0897
+
+   Value Range: 4.060058 - 5.489188
+   Mean: 5.108555
+   Std Dev: 0.293972
+
+   Lowest Values:
+      Theodosius of Bithynia: 4.06005820
+      Heron of Alexandria: 4.55520719
+      Didymus Chalcenterus: 4.56521739
+      Aristonicus of Alexandria: 4.83355934
+      Comarius: 4.87629758
+
+   Highest Values:
+      Dionysius of Halicarnassus: 5.34662993
+      Scymnus: 5.37843137
+      Flavius Josephus: 5.42256770
+      Onasander: 5.43101031
+      Pedianus Discorides: 5.48918792
+
+--------------------------------------------------------------------------------
+
+17. std_length
+   Separation Score: 0.0854
+
+   Value Range: 2.377843 - 3.154855
+   Mean: 2.852248
+   Std Dev: 0.151966
+
+   Lowest Values:
+      Bion of Phlossa: 2.37784325
+      Theodosius of Bithynia: 2.49497180
+      Cebes: 2.63496163
+      Aristonicus of Alexandria: 2.71016537
+      Comarius: 2.71035174
+
+   Highest Values:
+      Pedianus Discorides: 3.00213867
+      Brutus: 3.01771558
+      Longinus: 3.02522950
+      Asclepiodotus Tacticus: 3.02909556
+      Onasander: 3.15485544
+
+--------------------------------------------------------------------------------

@@ -1,25 +1,4 @@
 #!/usr/bin/env python3
-"""
-Greek Authorship Attribution Analysis (Authentic Features Only)
-===============================================================
-
-This script analyzes ancient Greek texts (100BC-100AD) to identify AUTHENTIC linguistic 
-features that can successfully differentiate between all authors. Only authors with >1000 
-words total are included in the analysis.
-
-IMPORTANT: Modern punctuation is excluded as it was not present in original manuscripts.
-
-Features analyzed:
-1. Character n-grams (2-char, 3-char, 4-char)
-2. Word n-grams (2-word, 3-word)
-3. Word frequency patterns
-4. Morphological patterns (case endings, particles, verb forms)
-5. Word length distributions
-6. Phonetic patterns (vowels, consonant clusters, diphthongs)
-7. Vocabulary richness (TTR, hapax legomena, lexical diversity)
-
-The goal is to find authentic linguistic features that can separate ALL authors.
-"""
 
 import os
 import re
@@ -48,7 +27,6 @@ class GreekTextAnalyzer:
         self.results = {}
         
     def load_texts(self):
-        """Load all texts and organize by author."""
         print("Loading texts...")
         
         for author_dir in self.base_path.iterdir():
@@ -61,7 +39,6 @@ class GreekTextAnalyzer:
                     try:
                         with open(text_file, 'r', encoding='utf-8') as f:
                             content = f.read()
-                            # Clean and normalize the text
                             content = self.clean_text(content)
                             if content:
                                 words = len(content.split())
@@ -81,7 +58,6 @@ class GreekTextAnalyzer:
                         'total_words': total_words,
                         'num_texts': len(author_texts)
                     }
-                    # Combine all texts for this author
                     combined_text = ' '.join([text['content'] for text in author_texts])
                     self.author_texts[author_name] = combined_text
                     print(f"✓ {author_name}: {total_words:,} words in {len(author_texts)} texts")
@@ -92,25 +68,17 @@ class GreekTextAnalyzer:
         return self.authors
     
     def clean_text(self, text):
-        """Clean and normalize Greek text - removing modern punctuation."""
-        # Remove non-Greek characters including ALL punctuation (modern editorial additions)
-        # Greek Unicode ranges: 0370-03FF (Greek and Coptic), 1F00-1FFF (Greek Extended)
-        # Only keep Greek letters and spaces
         greek_pattern = r'[^\u0370-\u03FF\u1F00-\u1FFF\s]'
         text = re.sub(greek_pattern, '', text)
         
-        # Normalize whitespace
         text = re.sub(r'\s+', ' ', text)
         text = text.strip()
         
-        # Convert to lowercase for consistency
         text = text.lower()
         
         return text
     
     def extract_character_ngrams(self, text, n):
-        """Extract character n-grams from text."""
-        # Remove spaces for character n-grams
         text_no_spaces = re.sub(r'\s+', '', text)
         ngrams = []
         for i in range(len(text_no_spaces) - n + 1):
@@ -118,7 +86,6 @@ class GreekTextAnalyzer:
         return ngrams
     
     def extract_word_ngrams(self, text, n):
-        """Extract word n-grams from text."""
         words = text.split()
         ngrams = []
         for i in range(len(words) - n + 1):
@@ -126,7 +93,6 @@ class GreekTextAnalyzer:
         return ngrams
     
     def analyze_character_ngrams(self):
-        """Analyze character n-grams (2, 3, 4 characters)."""
         print("\nAnalyzing character n-grams...")
         
         for n in [2, 3, 4]:
@@ -137,7 +103,6 @@ class GreekTextAnalyzer:
                 ngrams = self.extract_character_ngrams(text, n)
                 author_ngrams[author] = Counter(ngrams)
             
-            # Find the most distinctive n-grams
             distinctive_ngrams = self.find_distinctive_features(author_ngrams, f"{n}-char-ngrams")
             self.results[f'char_{n}grams'] = {
                 'author_features': author_ngrams,
@@ -145,7 +110,6 @@ class GreekTextAnalyzer:
             }
     
     def analyze_word_ngrams(self):
-        """Analyze word n-grams (2, 3 words)."""
         print("\nAnalyzing word n-grams...")
         
         for n in [2, 3]:
@@ -154,7 +118,6 @@ class GreekTextAnalyzer:
             
             for author, text in self.author_texts.items():
                 ngrams = self.extract_word_ngrams(text, n)
-                # Filter out very rare n-grams (appear less than 3 times)
                 ngram_counts = Counter(ngrams)
                 filtered_ngrams = {k: v for k, v in ngram_counts.items() if v >= 3}
                 author_ngrams[author] = filtered_ngrams
@@ -166,7 +129,6 @@ class GreekTextAnalyzer:
             }
     
     def analyze_word_frequencies(self):
-        """Analyze individual word frequencies."""
         print("\nAnalyzing word frequencies...")
         
         author_word_freqs = {}
@@ -175,13 +137,11 @@ class GreekTextAnalyzer:
         for author, text in self.author_texts.items():
             words = text.split()
             word_freq = Counter(words)
-            # Normalize by total words
             total_words = sum(word_freq.values())
             normalized_freq = {word: count/total_words for word, count in word_freq.items()}
             author_word_freqs[author] = normalized_freq
             all_words.update(word_freq.keys())
         
-        # Find words that appear in at least half of the authors
         min_authors = len(self.authors) // 2
         common_words = []
         for word in all_words:
@@ -199,7 +159,6 @@ class GreekTextAnalyzer:
         }
     
     def analyze_morphological_patterns(self):
-        """Analyze morphological and syntactic patterns in ancient Greek."""
         print("\nAnalyzing morphological and syntactic patterns...")
         
         author_morph_patterns = {}
@@ -212,7 +171,6 @@ class GreekTextAnalyzer:
             if total_words == 0:
                 continue
                 
-            # Common Greek case endings and particles
             case_endings = {
                 'genitive_sg_masc': ['ου', 'οῦ'],
                 'genitive_sg_fem': ['ης', 'ῆς', 'ας', 'ᾶς'],
@@ -225,17 +183,15 @@ class GreekTextAnalyzer:
                 'accusative_pl': ['ους', 'ας', 'οῦς', 'άς']
             }
             
-            # Count case ending frequencies
             for case, endings in case_endings.items():
                 count = 0
                 for word in words:
                     for ending in endings:
                         if word.endswith(ending):
                             count += 1
-                            break  # Don't double count
+                            break
                 morph_counts[f'{case}_freq'] = count / total_words
             
-            # Common particles and function words
             particles = ['δε', 'δέ', 'γαρ', 'γάρ', 'μεν', 'μέν', 'δη', 'δή', 'τε', 'τέ', 
                         'ουν', 'οῦν', 'αν', 'ἄν', 'ει', 'εἰ', 'αλλα', 'ἀλλά', 'ετι', 'ἔτι']
             
@@ -243,7 +199,6 @@ class GreekTextAnalyzer:
                 count = sum(1 for word in words if word == particle)
                 morph_counts[f'particle_{particle}_freq'] = count / total_words
             
-            # Verb forms (common endings)
             verb_endings = {
                 'present_3sg': ['ει', 'εῖ'],
                 'aorist_3sg': ['ε', 'έ', 'εν', 'έν'],
@@ -269,7 +224,6 @@ class GreekTextAnalyzer:
         }
     
     def analyze_word_length_distribution(self):
-        """Analyze distribution of word lengths (authentic linguistic feature)."""
         print("\nAnalyzing word length distributions...")
         
         author_word_lengths = {}
@@ -281,7 +235,6 @@ class GreekTextAnalyzer:
             if not word_lengths:
                 continue
                 
-            # Calculate distribution statistics
             length_dist = {
                 'avg_length': statistics.mean(word_lengths),
                 'median_length': statistics.median(word_lengths),
@@ -290,10 +243,9 @@ class GreekTextAnalyzer:
                 'min_length': min(word_lengths)
             }
             
-            # Length frequency distribution
             length_freq = Counter(word_lengths)
             total_words = len(word_lengths)
-            for length in range(1, 21):  # 1-20 character words
+            for length in range(1, 21):
                 length_dist[f'length_{length}_freq'] = length_freq.get(length, 0) / total_words
             
             author_word_lengths[author] = length_dist
@@ -305,7 +257,6 @@ class GreekTextAnalyzer:
         }
     
     def analyze_phonetic_patterns(self):
-        """Analyze phonetic and sound patterns in Greek text."""
         print("\nAnalyzing phonetic patterns...")
         
         author_phonetic_patterns = {}
@@ -319,22 +270,18 @@ class GreekTextAnalyzer:
                 
             phonetic_counts = {}
             
-            # Vowel patterns
             vowels = ['α', 'ε', 'η', 'ι', 'ο', 'υ', 'ω', 'ά', 'έ', 'ή', 'ί', 'ό', 'ύ', 'ώ']
             vowel_count = sum(text.count(vowel) for vowel in vowels)
             total_chars = len(text.replace(' ', ''))
             phonetic_counts['vowel_ratio'] = vowel_count / total_chars if total_chars > 0 else 0
             
-            # Specific vowel frequencies
             for vowel in ['α', 'ε', 'η', 'ι', 'ο', 'υ', 'ω']:
                 phonetic_counts[f'vowel_{vowel}_freq'] = text.count(vowel) / total_chars if total_chars > 0 else 0
             
-            # Consonant clusters
             clusters = ['στ', 'σκ', 'σπ', 'σφ', 'σχ', 'κτ', 'πτ', 'φθ', 'χθ', 'νθ', 'μπ', 'ντ']
             for cluster in clusters:
                 phonetic_counts[f'cluster_{cluster}_freq'] = text.count(cluster) / total_chars if total_chars > 0 else 0
             
-            # Diphthongs
             diphthongs = ['αι', 'ει', 'οι', 'υι', 'αυ', 'ευ', 'ου', 'ηυ']
             for diphthong in diphthongs:
                 phonetic_counts[f'diphthong_{diphthong}_freq'] = text.count(diphthong) / total_chars if total_chars > 0 else 0
@@ -348,7 +295,6 @@ class GreekTextAnalyzer:
         }
     
     def analyze_vocabulary_richness(self):
-        """Analyze vocabulary richness and lexical diversity."""
         print("\nAnalyzing vocabulary richness...")
         
         author_vocab_stats = {}
@@ -363,22 +309,17 @@ class GreekTextAnalyzer:
                 
             vocab_stats = {}
             
-            # Type-Token Ratio (TTR)
             vocab_stats['ttr'] = unique_words / total_words
             
-            # Hapax legomena (words appearing once)
             word_freq = Counter(words)
             hapax_count = sum(1 for freq in word_freq.values() if freq == 1)
             vocab_stats['hapax_ratio'] = hapax_count / total_words
             
-            # Dis legomena (words appearing twice)
             dis_count = sum(1 for freq in word_freq.values() if freq == 2)
             vocab_stats['dis_ratio'] = dis_count / total_words
             
-            # Average word frequency
             vocab_stats['avg_word_freq'] = statistics.mean(word_freq.values())
             
-            # Most frequent words ratio
             most_frequent_10 = sum(sorted(word_freq.values(), reverse=True)[:10])
             vocab_stats['top10_ratio'] = most_frequent_10 / total_words
             
@@ -391,25 +332,21 @@ class GreekTextAnalyzer:
         }
     
     def find_distinctive_features(self, author_features, feature_type):
-        """Find features that can distinguish between authors."""
         print(f"    Finding distinctive features for {feature_type}...")
         
         distinctive_features = []
         authors = list(author_features.keys())
         
-        # For each feature, check if it can separate authors
         all_features = set()
         for features in author_features.values():
             all_features.update(features.keys())
         
         for feature in all_features:
-            # Get feature values for each author
             feature_values = {}
             for author in authors:
                 value = author_features[author].get(feature, 0)
                 feature_values[author] = value
             
-            # Check if this feature can separate authors
             separation_score = self.calculate_separation_score(feature_values)
             if separation_score > 0:
                 distinctive_features.append({
@@ -419,18 +356,15 @@ class GreekTextAnalyzer:
                     'feature_type': feature_type
                 })
         
-        # Sort by separation score
         distinctive_features.sort(key=lambda x: x['separation_score'], reverse=True)
-        return distinctive_features[:50]  # Top 50 most distinctive
+        return distinctive_features[:50]
     
     def calculate_separation_score(self, feature_values):
-        """Calculate how well a feature separates authors."""
         values = list(feature_values.values())
         
         if len(set(values)) <= 1:
-            return 0  # No variation
+            return 0
         
-        # Calculate coefficient of variation (std/mean)
         mean_val = statistics.mean(values)
         if mean_val == 0:
             return 0
@@ -438,7 +372,6 @@ class GreekTextAnalyzer:
         std_val = statistics.stdev(values) if len(values) > 1 else 0
         cv = std_val / abs(mean_val)
         
-        # Bonus for having distinct ranges
         sorted_values = sorted(values)
         range_gaps = []
         for i in range(1, len(sorted_values)):
@@ -451,7 +384,6 @@ class GreekTextAnalyzer:
         return cv + gap_bonus
     
     def test_perfect_discrimination(self):
-        """Test if any single feature can perfectly discriminate all authors."""
         print("\nTesting for perfect discrimination...")
         
         perfect_features = []
@@ -461,9 +393,8 @@ class GreekTextAnalyzer:
                 for feature_info in result_data['distinctive_features']:
                     author_values = feature_info['author_values']
                     
-                    # Check if all authors have unique values for this feature
                     values = list(author_values.values())
-                    if len(set(values)) == len(values):  # All unique
+                    if len(set(values)) == len(values):
                         perfect_features.append({
                             'feature_type': result_type,
                             'feature': feature_info['feature'],
@@ -476,18 +407,14 @@ class GreekTextAnalyzer:
             return perfect_features
         else:
             print("No single feature provides perfect discrimination.")
-            # Find the best combinations
             return self.find_best_feature_combinations()
     
     def find_best_feature_combinations(self):
-        """Find combinations of features that can discriminate all authors."""
         print("Looking for feature combinations...")
         
-        # Get top features from each category
         top_features = []
         for result_type, result_data in self.results.items():
             if 'distinctive_features' in result_data and result_data['distinctive_features']:
-                # Take top 5 from each category
                 for feature_info in result_data['distinctive_features'][:5]:
                     top_features.append({
                         'type': result_type,
@@ -496,25 +423,22 @@ class GreekTextAnalyzer:
                         'score': feature_info['separation_score']
                     })
         
-        # Test combinations of 2 features
         best_combinations = []
         for feat1, feat2 in combinations(top_features, 2):
             discrimination_rate = self.test_feature_combination([feat1, feat2])
-            if discrimination_rate > 0.8:  # 80% or better discrimination
+            if discrimination_rate > 0.8:
                 best_combinations.append({
                     'features': [feat1, feat2],
                     'discrimination_rate': discrimination_rate
                 })
         
         best_combinations.sort(key=lambda x: x['discrimination_rate'], reverse=True)
-        return best_combinations[:10]  # Top 10 combinations
+        return best_combinations[:10]
     
     def test_feature_combination(self, features):
-        """Test how well a combination of features discriminates authors."""
         authors = list(self.author_texts.keys())
         n_authors = len(authors)
         
-        # Create feature vectors for each author
         author_vectors = {}
         for author in authors:
             vector = []
@@ -523,7 +447,6 @@ class GreekTextAnalyzer:
                 vector.append(value)
             author_vectors[author] = vector
         
-        # Count how many author pairs can be distinguished
         distinguishable_pairs = 0
         total_pairs = 0
         
@@ -533,19 +456,16 @@ class GreekTextAnalyzer:
                 vec1 = author_vectors[author1]
                 vec2 = author_vectors[author2]
                 
-                # Check if vectors are different
                 if vec1 != vec2:
                     distinguishable_pairs += 1
         
         return distinguishable_pairs / total_pairs if total_pairs > 0 else 0
     
     def generate_visualizations(self):
-        """Generate visualizations of the analysis results."""
         print("\nGenerating visualizations...")
         
         results_dir = self.base_path / "results"
         
-        # 1. Author word count distribution
         plt.figure(figsize=(12, 6))
         authors = list(self.authors.keys())
         word_counts = [self.authors[author]['total_words'] for author in authors]
@@ -558,33 +478,27 @@ class GreekTextAnalyzer:
         plt.savefig(results_dir / 'word_count_distribution.png', dpi=300, bbox_inches='tight')
         plt.close()
         
-        # 2. Top distinctive features heatmap
         if self.results:
             self.create_feature_heatmap(results_dir)
         
-        # 3. Word length distribution comparison
         self.create_word_length_comparison(results_dir)
         
         print(f"Visualizations saved to {results_dir}")
     
     def create_feature_heatmap(self, results_dir):
-        """Create a heatmap of top distinctive features."""
-        # Collect top features from each category
         all_top_features = []
         
         for result_type, result_data in self.results.items():
             if 'distinctive_features' in result_data and result_data['distinctive_features']:
-                # Take top 3 from each category
                 for i, feature_info in enumerate(result_data['distinctive_features'][:3]):
                     all_top_features.append({
-                        'name': f"{result_type}_{feature_info['feature']}"[:50],  # Truncate long names
+                        'name': f"{result_type}_{feature_info['feature']}"[:50],
                         'values': feature_info['author_values']
                     })
         
         if not all_top_features:
             return
         
-        # Create matrix
         authors = list(self.author_texts.keys())
         feature_names = [f['name'] for f in all_top_features]
         
@@ -593,7 +507,6 @@ class GreekTextAnalyzer:
             row = [feature['values'].get(author, 0) for author in authors]
             matrix.append(row)
         
-        # Normalize each row (feature) to 0-1 scale
         normalized_matrix = []
         for row in matrix:
             min_val, max_val = min(row), max(row)
@@ -617,13 +530,11 @@ class GreekTextAnalyzer:
         plt.close()
     
     def create_word_length_comparison(self, results_dir):
-        """Create word length distribution comparison."""
         if 'word_lengths' not in self.results:
             return
         
         authors = list(self.author_texts.keys())
         
-        # Extract average word lengths
         avg_lengths = []
         for author in authors:
             if author in self.results['word_lengths']['author_features']:
@@ -642,35 +553,28 @@ class GreekTextAnalyzer:
         plt.close()
     
     def save_results(self):
-        """Save detailed results to files."""
         print("\nSaving results...")
         
         results_dir = self.base_path / "results"
         docs_dir = self.base_path / "results documentation"
         
-        # Save raw results as pickle for further analysis
         with open(results_dir / 'raw_results.pkl', 'wb') as f:
             pickle.dump(self.results, f)
         
-        # Save author information
         with open(results_dir / 'author_info.json', 'w', encoding='utf-8') as f:
             json.dump(self.authors, f, indent=2, ensure_ascii=False, default=str)
         
-        # Test for perfect discrimination
         perfect_or_best = self.test_perfect_discrimination()
         
-        # Save the best discriminative features
         with open(results_dir / 'best_discriminative_features.json', 'w', encoding='utf-8') as f:
             json.dump(perfect_or_best, f, indent=2, ensure_ascii=False, default=str)
         
-        # Create summary report
         self.create_summary_report(docs_dir, perfect_or_best)
         
         print(f"Results saved to {results_dir}")
         print(f"Documentation saved to {docs_dir}")
     
     def create_summary_report(self, docs_dir, discriminative_features):
-        """Create a comprehensive summary report."""
         report_path = docs_dir / 'analysis_report.md'
         
         with open(report_path, 'w', encoding='utf-8') as f:
@@ -679,12 +583,10 @@ class GreekTextAnalyzer:
             f.write(f"This analysis examined ancient Greek texts from {len(self.authors)} authors ")
             f.write(f"who had more than {self.word_count_threshold} words in their collected works.\n\n")
             
-            # Author summary
             f.write("## Included Authors\n\n")
             for author, info in sorted(self.authors.items()):
                 f.write(f"- **{author}**: {info['total_words']:,} words across {info['num_texts']} texts\n")
             
-            # Analysis methods
             f.write("\n## Analysis Methods\n\n")
             f.write("The following authentic linguistic features were analyzed (excluding modern punctuation):\n\n")
             f.write("1. **Character n-grams**: 2, 3, and 4-character sequences\n")
@@ -695,12 +597,10 @@ class GreekTextAnalyzer:
             f.write("6. **Phonetic patterns**: Vowel frequencies, consonant clusters, diphthongs\n")
             f.write("7. **Vocabulary richness**: Type-token ratios, hapax legomena, lexical diversity\n\n")
             
-            # Results
             f.write("## Key Findings\n\n")
             
             if discriminative_features and len(discriminative_features) > 0:
                 if isinstance(discriminative_features[0], dict) and 'feature_type' in discriminative_features[0]:
-                    # Perfect discrimination found
                     f.write("### Perfect Discrimination Found! 🎉\n\n")
                     f.write("The following features can perfectly distinguish between ALL authors:\n\n")
                     
@@ -712,7 +612,6 @@ class GreekTextAnalyzer:
                         f.write(f"\nSeparation score: {feature.get('separation_score', 'N/A'):.4f}\n\n")
                 
                 else:
-                    # Feature combinations
                     f.write("### Best Feature Combinations\n\n")
                     f.write("No single feature provides perfect discrimination, but these combinations work well:\n\n")
                     
@@ -722,7 +621,6 @@ class GreekTextAnalyzer:
                             f.write(f"- **{feature['type']}**: {feature['feature']} (score: {feature['score']:.4f})\n")
                         f.write("\n")
             
-            # Feature statistics
             f.write("## Feature Analysis Summary\n\n")
             for feature_type, data in self.results.items():
                 if 'distinctive_features' in data:
@@ -733,7 +631,6 @@ class GreekTextAnalyzer:
                         f.write(f"1. **{feature['feature']}** (separation score: {feature['separation_score']:.4f})\n")
                     f.write("\n")
             
-            # Methodology
             f.write("## Methodology Notes\n\n")
             f.write("- **Text preprocessing**: Greek text was normalized, non-Greek characters removed\n")
             f.write("- **Minimum threshold**: Only authors with >1000 words included\n")
@@ -750,19 +647,16 @@ class GreekTextAnalyzer:
             f.write("- `word_length_comparison.png`: Average word length comparison\n")
     
     def run_complete_analysis(self):
-        """Run the complete authorship attribution analysis."""
         print("=== Greek Authorship Attribution Analysis ===")
         print("Goal: Find features that can differentiate ALL authors")
         print("=" * 50)
         
-        # Load and filter texts
         self.load_texts()
         
         if len(self.authors) < 2:
             print("Need at least 2 authors for analysis!")
             return
         
-        # Run all analysis methods (excluding modern punctuation)
         self.analyze_character_ngrams()
         self.analyze_word_ngrams()
         self.analyze_word_frequencies()
@@ -771,10 +665,8 @@ class GreekTextAnalyzer:
         self.analyze_phonetic_patterns()
         self.analyze_vocabulary_richness()
         
-        # Generate visualizations
         self.generate_visualizations()
         
-        # Save all results
         self.save_results()
         
         print("\n" + "=" * 50)
@@ -782,12 +674,11 @@ class GreekTextAnalyzer:
         print("=" * 50)
 
 def main():
-    # Set up the analyzer
     base_path = "/home/user/Downloads/100BC to 100AD"
     analyzer = GreekTextAnalyzer(base_path)
     
-    # Run the complete analysis
     analyzer.run_complete_analysis()
 
 if __name__ == "__main__":
     main()
+

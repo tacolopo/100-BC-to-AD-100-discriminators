@@ -1,0 +1,79 @@
+================================================================================
+PERFECT DISCRIMINATORS - QUICK REFERENCE
+================================================================================
+
+All 60 features listed below can perfectly distinguish between all 33 authors.
+Each author has a unique value for each feature.
+
+
+MORPHOLOGICAL (15 features)
+--------------------------------------------------------------------------------
+ 1. particle_δέ_freq                         | Score: 0.8776 | Range: 0.000000-0.007166
+ 2. particle_τε_freq                         | Score: 0.7676 | Range: 0.000000-0.020677
+ 3. dative_pl_freq                           | Score: 0.5886 | Range: 0.000000-0.036425
+ 4. accusative_sg_fem_freq                   | Score: 0.5706 | Range: 0.001237-0.021069
+ 5. genitive_sg_masc_freq                    | Score: 0.4965 | Range: 0.001103-0.076391
+ 6. aorist_3sg_freq                          | Score: 0.4420 | Range: 0.016018-0.097255
+ 7. present_3sg_freq                         | Score: 0.3913 | Range: 0.007821-0.037140
+ 8. accusative_pl_freq                       | Score: 0.3793 | Range: 0.000000-0.050062
+ 9. genitive_sg_fem_freq                     | Score: 0.3759 | Range: 0.000000-0.067941
+10. nominative_pl_freq                       | Score: 0.3285 | Range: 0.028713-0.097461
+11. infinitive_freq                          | Score: 0.3263 | Range: 0.020009-0.074168
+12. genitive_pl_freq                         | Score: 0.3255 | Range: 0.022051-0.076591
+13. participle_nom_sg_freq                   | Score: 0.2705 | Range: 0.015681-0.044920
+14. accusative_sg_masc_freq                  | Score: 0.2636 | Range: 0.011466-0.065050
+15. dative_sg_freq                           | Score: 0.1835 | Range: 0.069335-0.141979
+
+PHONETIC (23 features)
+--------------------------------------------------------------------------------
+ 1. cluster_νθ_freq                          | Score: 0.7858 | Range: 0.000000-0.003465
+ 2. cluster_κτ_freq                          | Score: 0.7146 | Range: 0.000256-0.005180
+ 3. cluster_χθ_freq                          | Score: 0.7120 | Range: 0.000043-0.001141
+ 4. cluster_πτ_freq                          | Score: 0.5958 | Range: 0.000097-0.002106
+ 5. cluster_σπ_freq                          | Score: 0.5674 | Range: 0.000000-0.001775
+ 6. diphthong_αυ_freq                        | Score: 0.5523 | Range: 0.000000-0.001863
+ 7. cluster_σκ_freq                          | Score: 0.5164 | Range: 0.000000-0.001951
+ 8. cluster_μπ_freq                          | Score: 0.4401 | Range: 0.000000-0.001033
+ 9. cluster_στ_freq                          | Score: 0.4324 | Range: 0.000000-0.014766
+10. diphthong_ευ_freq                        | Score: 0.3703 | Range: 0.000466-0.001952
+11. diphthong_οι_freq                        | Score: 0.3400 | Range: 0.003525-0.013199
+12. diphthong_αι_freq                        | Score: 0.2814 | Range: 0.004475-0.014115
+13. vowel_η_freq                             | Score: 0.2565 | Range: 0.005708-0.017276
+14. diphthong_ου_freq                        | Score: 0.2521 | Range: 0.002015-0.010232
+15. cluster_ντ_freq                          | Score: 0.2409 | Range: 0.002697-0.009942
+16. diphthong_ει_freq                        | Score: 0.1960 | Range: 0.005435-0.009894
+17. vowel_ω_freq                             | Score: 0.1858 | Range: 0.009846-0.017519
+18. vowel_υ_freq                             | Score: 0.1684 | Range: 0.012820-0.023752
+19. vowel_ι_freq                             | Score: 0.1523 | Range: 0.037641-0.062267
+20. vowel_α_freq                             | Score: 0.1216 | Range: 0.057644-0.087578
+21. vowel_ε_freq                             | Score: 0.1143 | Range: 0.046584-0.067174
+22. vowel_ο_freq                             | Score: 0.0943 | Range: 0.055577-0.074545
+23. vowel_ratio                              | Score: 0.0579 | Range: 0.321671-0.368540
+
+VOCABULARY (5 features)
+--------------------------------------------------------------------------------
+ 1. avg_word_freq                            | Score: 0.7813 | Range: 1.648006-17.587972
+ 2. hapax_ratio                              | Score: 0.5617 | Range: 0.017534-0.485116
+ 3. ttr                                      | Score: 0.4698 | Range: 0.056857-0.606794
+ 4. dis_ratio                                | Score: 0.4241 | Range: 0.008658-0.084691
+ 5. top10_ratio                              | Score: 0.2020 | Range: 0.139134-0.275519
+
+WORD_LENGTHS (17 features)
+--------------------------------------------------------------------------------
+ 1. length_15_freq                           | Score: 0.5944 | Range: 0.000000-0.004577
+ 2. length_14_freq                           | Score: 0.5152 | Range: 0.000218-0.006763
+ 3. length_1_freq                            | Score: 0.4538 | Range: 0.015428-0.088614
+ 4. length_13_freq                           | Score: 0.4238 | Range: 0.000551-0.013974
+ 5. length_12_freq                           | Score: 0.3382 | Range: 0.002205-0.020784
+ 6. length_11_freq                           | Score: 0.2816 | Range: 0.008391-0.031683
+ 7. length_7_freq                            | Score: 0.2651 | Range: 0.045767-0.153972
+ 8. length_9_freq                            | Score: 0.2457 | Range: 0.016370-0.070524
+ 9. length_10_freq                           | Score: 0.2332 | Range: 0.012967-0.049083
+10. length_2_freq                            | Score: 0.2135 | Range: 0.115215-0.244851
+11. length_5_freq                            | Score: 0.2104 | Range: 0.076864-0.175303
+12. length_6_freq                            | Score: 0.1879 | Range: 0.067848-0.138368
+13. length_3_freq                            | Score: 0.1849 | Range: 0.128432-0.282212
+14. length_8_freq                            | Score: 0.1739 | Range: 0.040706-0.097504
+15. length_4_freq                            | Score: 0.1693 | Range: 0.063310-0.151443
+16. avg_length                               | Score: 0.0897 | Range: 4.060058-5.489188
+17. std_length                               | Score: 0.0854 | Range: 2.377843-3.154855

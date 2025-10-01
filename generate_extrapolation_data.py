@@ -1,18 +1,4 @@
 #!/usr/bin/env python3
-"""
-Extrapolation Data Generator
-============================
-
-This script generates detailed statistical profiles and metadata needed to apply
-our authorship attribution findings to new corpora. It processes the analysis
-results to create comprehensive feature profiles for each author and feature.
-
-Output:
-- Detailed author profiles with statistical metadata
-- Feature distribution summaries  
-- Classification templates
-- Validation frameworks
-"""
 
 import json
 import pickle
@@ -22,21 +8,17 @@ from pathlib import Path
 import statistics
 
 def load_results():
-    """Load the analysis results."""
     print("Loading analysis results...")
     
-    # Load raw results
     with open('results/raw_results.pkl', 'rb') as f:
         raw_results = pickle.load(f)
     
-    # Load discriminative features
     with open('results/best_discriminative_features.json', 'r', encoding='utf-8') as f:
         discriminative_features = json.load(f)
     
     return raw_results, discriminative_features
 
 def calculate_feature_statistics(feature_data):
-    """Calculate comprehensive statistics for a feature across all authors."""
     values = list(feature_data.values())
     
     stats = {
@@ -50,7 +32,7 @@ def calculate_feature_statistics(feature_data):
         'range': max(values) - min(values),
         'quartiles': {
             'q1': np.percentile(values, 25),
-            'q2': np.percentile(values, 50),  # median
+            'q2': np.percentile(values, 50),
             'q3': np.percentile(values, 75)
         },
         'percentiles': {f'p{p}': np.percentile(values, p) for p in [5, 10, 25, 50, 75, 90, 95]},
@@ -63,11 +45,9 @@ def calculate_feature_statistics(feature_data):
     return stats
 
 def calculate_separation_score_detailed(feature_data):
-    """Calculate detailed separation metrics."""
     values = sorted(feature_data.values())
     authors = list(feature_data.keys())
     
-    # Find minimum gap between consecutive values
     gaps = []
     for i in range(len(values) - 1):
         gap = values[i + 1] - values[i]
@@ -90,18 +70,15 @@ def calculate_separation_score_detailed(feature_data):
     }
 
 def generate_author_profiles(raw_results, discriminative_features):
-    """Generate comprehensive profiles for each author."""
     print("Generating author profiles...")
     
     author_profiles = {}
     
-    # Get all features from discriminative features list
     all_features = {}
     for feature_item in discriminative_features:
         feature_key = f"{feature_item['feature_type']}:{feature_item['feature']}"
         all_features[feature_key] = feature_item['author_values']
     
-    # Add additional features from raw results if available
     feature_categories = ['character_ngrams', 'word_ngrams', 'word_frequencies', 
                          'morphological', 'word_lengths', 'phonetic', 'vocabulary']
     
@@ -118,7 +95,6 @@ def generate_author_profiles(raw_results, discriminative_features):
                             all_features[feature_key] = {}
                         all_features[feature_key][author] = value
     
-    # Generate profiles
     for author in raw_results.get('authors', {}):
         profile = {
             'metadata': raw_results['authors'][author],
@@ -128,16 +104,13 @@ def generate_author_profiles(raw_results, discriminative_features):
             'confidence_indicators': {}
         }
         
-        # Add feature values and rankings
         for feature_key, feature_data in all_features.items():
             if author in feature_data:
                 value = feature_data[author]
                 
-                # Calculate ranking (1 = lowest value, n = highest value)
                 sorted_values = sorted(feature_data.values())
                 rank = sorted_values.index(value) + 1
                 
-                # Calculate percentile
                 percentile = (rank - 1) / (len(sorted_values) - 1) * 100 if len(sorted_values) > 1 else 50
                 
                 profile['features'][feature_key] = value
@@ -149,35 +122,28 @@ def generate_author_profiles(raw_results, discriminative_features):
     return author_profiles, all_features
 
 def generate_feature_metadata(all_features, discriminative_features):
-    """Generate metadata for each feature."""
     print("Generating feature metadata...")
     
     feature_metadata = {}
     
-    # Create lookup for discriminative features
     discriminative_lookup = {}
     for item in discriminative_features:
         key = f"{item['feature_type']}:{item['feature']}"
         discriminative_lookup[key] = item
     
     for feature_key, feature_data in all_features.items():
-        if len(feature_data) < 2:  # Skip features with insufficient data
+        if len(feature_data) < 2:
             continue
             
-        # Basic statistics
         stats = calculate_feature_statistics(feature_data)
         
-        # Separation metrics
         separation = calculate_separation_score_detailed(feature_data)
         
-        # Feature type classification
         feature_type = feature_key.split(':')[0]
         feature_name = feature_key.split(':', 1)[1]
         
-        # Reliability assessment
-        reliability_score = min(1.0, separation['separation_score'] * 1.2)  # Boost good separators
+        reliability_score = min(1.0, separation['separation_score'] * 1.2)
         
-        # Is this a perfect discriminator?
         is_perfect = separation['total_unique_values'] == len(feature_data)
         
         metadata = {
@@ -198,7 +164,6 @@ def generate_feature_metadata(all_features, discriminative_features):
     return feature_metadata
 
 def classify_feature_utility(separation_score, is_perfect):
-    """Classify feature utility for attribution."""
     if not is_perfect:
         return "not_recommended"
     elif separation_score >= 0.8:
@@ -213,7 +178,6 @@ def classify_feature_utility(separation_score, is_perfect):
         return "poor_discriminator"
 
 def generate_feature_description(feature_type, feature_name):
-    """Generate human-readable description of feature."""
     descriptions = {
         'morphological': {
             'particle_δέ_freq': 'Frequency of δέ particle (connecting/adversative particle)',
@@ -241,7 +205,6 @@ def generate_feature_description(feature_type, feature_name):
         return f"{feature_type.title()} feature: {feature_name}"
 
 def create_classification_template():
-    """Create template for classifying unknown texts."""
     template = {
         'classification_workflow': {
             'step_1': 'Extract all 60+ features from unknown text',
@@ -272,37 +235,29 @@ def create_classification_template():
     return template
 
 def main():
-    """Main execution function."""
     print("=== Extrapolation Data Generator ===")
     
-    # Load results
     raw_results, discriminative_features = load_results()
     
-    # Generate comprehensive profiles
     author_profiles, all_features = generate_author_profiles(raw_results, discriminative_features)
     feature_metadata = generate_feature_metadata(all_features, discriminative_features)
     classification_template = create_classification_template()
     
-    # Create output directory
     output_dir = Path('results/extrapolation_data')
     output_dir.mkdir(exist_ok=True)
     
-    # Save author profiles
     print("Saving author profiles...")
     with open(output_dir / 'author_profiles.json', 'w', encoding='utf-8') as f:
         json.dump(author_profiles, f, indent=2, ensure_ascii=False)
     
-    # Save feature metadata
     print("Saving feature metadata...")
     with open(output_dir / 'feature_metadata.json', 'w', encoding='utf-8') as f:
         json.dump(feature_metadata, f, indent=2, ensure_ascii=False)
     
-    # Save classification template
     print("Saving classification template...")
     with open(output_dir / 'classification_template.json', 'w', encoding='utf-8') as f:
         json.dump(classification_template, f, indent=2, ensure_ascii=False)
     
-    # Generate summary report
     print("Generating summary report...")
     summary = {
         'total_authors': len(author_profiles),
@@ -313,14 +268,12 @@ def main():
         'top_features': []
     }
     
-    # Count by category
     for feature_key, metadata in feature_metadata.items():
         category = metadata['feature_type']
         if category not in summary['feature_categories']:
             summary['feature_categories'][category] = 0
         summary['feature_categories'][category] += 1
     
-    # Get top 20 features by separation score
     sorted_features = sorted(feature_metadata.items(), 
                            key=lambda x: x[1]['separation_metrics']['separation_score'], 
                            reverse=True)
@@ -352,3 +305,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
