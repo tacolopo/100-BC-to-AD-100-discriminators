@@ -1,0 +1,27 @@
+{
+  "classification_workflow": {
+    "step_1": "Extract all 60+ features from unknown text",
+    "step_2": "Calculate distance to each known author profile",
+    "step_3": "Weight distances by feature reliability scores",
+    "step_4": "Compute overall similarity scores",
+    "step_5": "Rank candidates and assess confidence"
+  },
+  "minimum_requirements": {
+    "text_length": 1000,
+    "recommended_length": 5000,
+    "high_confidence_length": 10000
+  },
+  "confidence_thresholds": {
+    "high_confidence": 0.85,
+    "moderate_confidence": 0.7,
+    "low_confidence": 0.55,
+    "inconclusive": 0.55
+  },
+  "feature_weighting": {
+    "primary_discriminators": 1.0,
+    "strong_discriminators": 0.8,
+    "moderate_discriminators": 0.6,
+    "weak_discriminators": 0.4,
+    "poor_discriminators": 0.2
+  }
+}

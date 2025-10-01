@@ -1,0 +1,135 @@
+{
+  "total_authors": 33,
+  "total_features": 57182,
+  "perfect_discriminators": 57151,
+  "primary_discriminators": 27874,
+  "feature_categories": {
+    "morphological": 33,
+    "word_lengths": 25,
+    "phonetic": 28,
+    "vocabulary": 5,
+    "word_frequencies": 57091
+  },
+  "top_features": [
+    {
+      "feature": "word_frequencies:δικαίαρχος",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: δικαίαρχος"
+    },
+    {
+      "feature": "word_frequencies:αὕτως",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: αὕτως"
+    },
+    {
+      "feature": "word_frequencies:ἡγεμονικὰς",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ἡγεμονικὰς"
+    },
+    {
+      "feature": "word_frequencies:ὑπογράφει",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ὑπογράφει"
+    },
+    {
+      "feature": "word_frequencies:φροντίζοντα",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: φροντίζοντα"
+    },
+    {
+      "feature": "word_frequencies:ἐπισκοπῶμεν",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ἐπισκοπῶμεν"
+    },
+    {
+      "feature": "word_frequencies:ἄραβας",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ἄραβας"
+    },
+    {
+      "feature": "word_frequencies:δύσεσιν",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: δύσεσιν"
+    },
+    {
+      "feature": "word_frequencies:ἐμφανίζει",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ἐμφανίζει"
+    },
+    {
+      "feature": "word_frequencies:ζεφύρου",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ζεφύρου"
+    },
+    {
+      "feature": "word_frequencies:πέμψουσιν",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: πέμψουσιν"
+    },
+    {
+      "feature": "word_frequencies:ἰβηρίας",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ἰβηρίας"
+    },
+    {
+      "feature": "word_frequencies:ἔβη",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ἔβη"
+    },
+    {
+      "feature": "word_frequencies:ἄρκτοις",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ἄρκτοις"
+    },
+    {
+      "feature": "word_frequencies:ἐσχατιὰ",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ἐσχατιὰ"
+    },
+    {
+      "feature": "word_frequencies:ᾐνίξατο",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ᾐνίξατο"
+    },
+    {
+      "feature": "word_frequencies:οἴη",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: οἴη"
+    },
+    {
+      "feature": "word_frequencies:ἁμάξης",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ἁμάξης"
+    },
+    {
+      "feature": "word_frequencies:ἀρκτικὸν",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: ἀρκτικὸν"
+    },
+    {
+      "feature": "word_frequencies:περιφερομένων",
+      "separation_score": 1.0,
+      "recommendation": "primary_discriminator",
+      "description": "Word_Frequencies feature: περιφερομένων"
+    }
+  ]
+}

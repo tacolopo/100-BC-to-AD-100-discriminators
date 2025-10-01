@@ -1,0 +1,166 @@
+{
+  "probability": 0.0001406807529200666,
+  "interpretation": "Very likely multiple authors",
+  "text_count": 5,
+  "text_names": [
+    "Cebes_Tabula",
+    "Strabo_Geography",
+    "Longinus_On the sublime",
+    "Chariton_Chaereas and Callirhoë",
+    "Homer_The Battle of Frogs and Mice"
+  ],
+  "consistency_scores": {
+    "morphological:particle_δέ_freq": 5.3868852149452186e-18,
+    "morphological:dative_pl_freq": 0.0008829238513262315,
+    "morphological:accusative_sg_fem_freq": 1.4336368960415704e-20,
+    "morphological:genitive_sg_masc_freq": 5.919430315229014e-05,
+    "morphological:accusative_pl_freq": 1.4460259430911731e-05,
+    "morphological:genitive_sg_fem_freq": 1.4019453667316925e-07,
+    "morphological:nominative_pl_freq": 9.680418629378356e-11,
+    "morphological:genitive_pl_freq": 9.379782385709997e-12
+  },
+  "feature_variances": {
+    "morphological:particle_δέ_freq": {
+      "variance": 1.925501384515199e-06,
+      "std_dev": 0.0013876243672245017,
+      "mean": 0.0023138682502343248,
+      "coefficient_variation": 0.5996989530773749,
+      "range": 0.003381871311986799,
+      "values": [
+        0.0012714558169103624,
+        0.0014917533354343944,
+        0.0016558902381327866,
+        0.0024969147317969176,
+        0.004653327128897162
+      ],
+      "separation_score": 0.8776146924300977
+    },
+    "morphological:dative_pl_freq": {
+      "variance": 2.2691078129589932e-05,
+      "std_dev": 0.004763515312202736,
+      "mean": 0.01768827984386546,
+      "coefficient_variation": 0.26930347971935714,
+      "range": 0.010857252165620506,
+      "values": [
+        0.013350286077558804,
+        0.021269741219315755,
+        0.02420753824317931,
+        0.014723186866802514,
+        0.014890646812470917
+      ],
+      "separation_score": 0.5886313979196548
+    },
+    "morphological:accusative_sg_fem_freq": {
+      "variance": 3.998101283941428e-05,
+      "std_dev": 0.00632305407531948,
+      "mean": 0.013974324960467872,
+      "coefficient_variation": 0.4524765305806785,
+      "range": 0.01452758124971092,
+      "values": [
+        0.013986013986013986,
+        0.009994046993731834,
+        0.005677337959312411,
+        0.02020491920902333,
+        0.020009306654257795
+      ],
+      "separation_score": 0.5706154788352447
+    },
+    "morphological:genitive_sg_masc_freq": {
+      "variance": 9.246938013608796e-05,
+      "std_dev": 0.009616100048152991,
+      "mean": 0.026778836417004587,
+      "coefficient_variation": 0.3590932741964381,
+      "range": 0.024471926726905884,
+      "values": [
+        0.02119093028183937,
+        0.03843190811359737,
+        0.03296010093045261,
+        0.027351261372442096,
+        0.013959981386691484
+      ],
+      "separation_score": 0.4965218990905801
+    },
+    "morphological:accusative_pl_freq": {
+      "variance": 5.630331232604996e-05,
+      "std_dev": 0.007503553313334287,
+      "mean": 0.03438024944812975,
+      "coefficient_variation": 0.21825185778989373,
+      "range": 0.01966728480781714,
+      "values": [
+        0.02288620470438652,
+        0.04255348951220366,
+        0.031935026021132316,
+        0.03590391183307982,
+        0.03862261516984644
+      ],
+      "separation_score": 0.3792792792315582
+    },
+    "morphological:genitive_sg_fem_freq": {
+      "variance": 0.00016313299780125554,
+      "std_dev": 0.012772352868647795,
+      "mean": 0.048361183568823955,
+      "coefficient_variation": 0.2641033971071273,
+      "range": 0.030583396716675086,
+      "values": [
+        0.031150667514303877,
+        0.060265434044192316,
+        0.04305314619145245,
+        0.06173406423097896,
+        0.04560260586319218
+      ],
+      "separation_score": 0.3758828072496317
+    },
+    "morphological:nominative_pl_freq": {
+      "variance": 0.00021516497613493428,
+      "std_dev": 0.01466850285935597,
+      "mean": 0.04312129612031386,
+      "coefficient_variation": 0.34016841280533394,
+      "range": 0.03896034870272359,
+      "values": [
+        0.06781097690188599,
+        0.04028784536190776,
+        0.04163381170162435,
+        0.037023218436988775,
+        0.0288506281991624
+      ],
+      "separation_score": 0.32853720690507277
+    },
+    "morphological:genitive_pl_freq": {
+      "variance": 0.00028032402136318524,
+      "std_dev": 0.01674287972133782,
+      "mean": 0.04344089540841783,
+      "coefficient_variation": 0.38541746351971934,
+      "range": 0.041172715298148636,
+      "values": [
+        0.02564102564102564,
+        0.06681374093917428,
+        0.054171266361772594,
+        0.037539821484946764,
+        0.03303862261516985
+      ],
+      "separation_score": 0.32549762345857036
+    }
+  },
+  "summary": {
+    "most_consistent_features": {
+      "morphological:dative_pl_freq": 0.0008829238513262315,
+      "morphological:genitive_sg_masc_freq": 5.919430315229014e-05,
+      "morphological:accusative_pl_freq": 1.4460259430911731e-05,
+      "morphological:genitive_sg_fem_freq": 1.4019453667316925e-07,
+      "morphological:nominative_pl_freq": 9.680418629378356e-11,
+      "morphological:genitive_pl_freq": 9.379782385709997e-12,
+      "morphological:particle_δέ_freq": 5.3868852149452186e-18,
+      "morphological:accusative_sg_fem_freq": 1.4336368960415704e-20
+    },
+    "least_consistent_features": {
+      "morphological:accusative_sg_fem_freq": 1.4336368960415704e-20,
+      "morphological:particle_δέ_freq": 5.3868852149452186e-18,
+      "morphological:genitive_pl_freq": 9.379782385709997e-12,
+      "morphological:nominative_pl_freq": 9.680418629378356e-11,
+      "morphological:genitive_sg_fem_freq": 1.4019453667316925e-07,
+      "morphological:accusative_pl_freq": 1.4460259430911731e-05,
+      "morphological:genitive_sg_masc_freq": 5.919430315229014e-05,
+      "morphological:dative_pl_freq": 0.0008829238513262315
+    }
+  }
+}
