@@ -54,7 +54,7 @@ The following authentic linguistic features were analyzed (excluding modern punc
 
 ## Key Findings
 
-### Perfect Discrimination Found! 🎉
+### Perfect Discrimination Found! 
 
 The following features can perfectly distinguish between ALL authors:
 

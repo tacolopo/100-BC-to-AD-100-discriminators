@@ -1,24 +1,24 @@
 # Paul vs Individual Authors Analysis - Detailed Explanation
 
-## 🎯 **Core Question**
+##  **Core Question**
 How does Paul's internal linguistic variation compare to the internal variation of other single authors who wrote multiple texts?
 
-## 📊 **Methodology**
+##  **Methodology**
 For each of the 60 discriminative features identified from ancient Greek authors:
 1. Calculate Paul's variance across his 14 letters
 2. Calculate each single author's variance across their multiple texts
 3. Compare Paul's variance to each author's variance feature-by-feature
 4. Generate consistency scores showing how often Paul varies less than each author
 
-## 🔍 **Key Results Summary**
+##  **Key Results Summary**
 
 ### **Paul's Performance Against 12 Single Authors:**
 
-**✅ Paul varies LESS than 2 authors (17%):**
+** Paul varies LESS than 2 authors (17%):**
 1. **Heron of Alexandria**: Paul varies less on 66.2% of features
 2. **Bion of Phlossa**: Paul varies less on 50.8% of features
 
-**❌ Paul varies MORE than 10 authors (83%):**
+** Paul varies MORE than 10 authors (83%):**
 - **Pedianus Discorides**: Paul higher variance on 56.9% of features
 - **Lesbonax**: Paul higher variance on 61.0% of features  
 - **Philodemus**: Paul higher variance on 63.9% of features
@@ -35,7 +35,7 @@ For each of the 60 discriminative features identified from ancient Greek authors
 - **Interpretation**: Paul's variation is HIGH for a single author
 - **Authors compared**: 12 multi-text authors from 100BC-100AD period
 
-## 🎓 **What This Means**
+##  **What This Means**
 
 ### **Normal Single Author Expectation:**
 If Paul were a typical single author, we would expect:
@@ -51,38 +51,38 @@ If Paul were a typical single author, we would expect:
 ### **Scientific Interpretation:**
 **Paul's corpus demonstrates abnormally high linguistic diversity** that exceeds the normal range for single authorship. This computational evidence strongly supports multiple authorship.
 
-## 📈 **Detailed Breakdown by Author**
+##  **Detailed Breakdown by Author**
 
 ### **Authors Most Similar to Paul** (Paul varies less):
 
-#### 1. **Heron of Alexandria** - 66.2% consistency ✅
+#### 1. **Heron of Alexandria** - 66.2% consistency 
 - **Profile**: Technical/scientific writer with 12 texts
 - **Paul's advantage**: Varies less on 66% of features
 - **Implication**: Paul shows normal single-author consistency compared to Heron
 
-#### 2. **Bion of Phlossa** - 50.8% consistency ✅  
+#### 2. **Bion of Phlossa** - 50.8% consistency   
 - **Profile**: Poet with 3 short texts (1,814 words total)
 - **Paul's advantage**: Barely varies less (50.8% vs 49.2%)
 - **Implication**: Essentially tied - both show high internal variation
 
 ### **Authors Most Different from Paul** (Paul varies more):
 
-#### **Adamantius** - 9.9% consistency ❌
+#### **Adamantius** - 9.9% consistency 
 - **Profile**: Medical writer with 2 texts (11,602 words)
 - **Paul's disadvantage**: Shows higher variance on 90% of features
 - **Implication**: Paul varies 9x more than this single author
 
-#### **Flavius Josephus** - 13.2% consistency ❌
+#### **Flavius Josephus** - 13.2% consistency 
 - **Profile**: Historian with 4 major works (467,376 words)
 - **Paul's disadvantage**: Shows higher variance on 87% of features  
 - **Implication**: Even this prolific historian shows more consistency than Paul
 
-#### **Philo of Alexandria** - 15.8% consistency ❌
+#### **Philo of Alexandria** - 15.8% consistency 
 - **Profile**: Philosopher with 31 texts (418,833 words)
 - **Paul's disadvantage**: Shows higher variance on 84% of features
 - **Implication**: Despite 31 different works, Philo shows more linguistic consistency
 
-## 🔬 **Most Problematic Features for Paul**
+##  **Most Problematic Features for Paul**
 
 ### **Features where Paul shows higher variance than ALL 12 authors:**
 1. **εἰ particle frequency** (conditional "if") - 100% higher variance
@@ -95,7 +95,7 @@ If Paul were a typical single author, we would expect:
 - **Word length standard deviation** - 92% higher variance
 - **Top 10 most frequent words ratio** - 92% higher variance
 
-## 📚 **Scholarly Implications**
+##  **Scholarly Implications**
 
 ### **For Biblical Studies:**
 This computational analysis provides quantitative support for the scholarly consensus that the Pauline corpus represents multiple authorship:
@@ -111,7 +111,7 @@ This method demonstrates how to properly assess single authorship by comparing i
 ### **Statistical Significance:**
 **Paul's linguistic diversity exceeds 83% of confirmed single authors** from the same historical period, providing strong computational evidence for multiple authorship theories.
 
-## 🔗 **Comparison to Previous Analysis**
+##  **Comparison to Previous Analysis**
 
 ### **Method 1**: Paul vs Aggregate (12.3% single authorship probability)
 - Compared Paul's variation to overall differences between all 33 authors
@@ -122,7 +122,7 @@ This method demonstrates how to properly assess single authorship by comparing i
 - Result: Paul varies more than 83% of single authors
 - **Both methods converge on the same conclusion**: Multiple authorship likely
 
-## 📁 **Files in This Analysis**
+##  **Files in This Analysis**
 
 - `paul_vs_single_authors.py` - Analysis script
 - `paul_vs_authors_analysis.json` - Complete results data

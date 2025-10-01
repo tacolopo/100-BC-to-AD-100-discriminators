@@ -1,4 +1,4 @@
-# 📊 Extrapolation Guide: Applying Findings to Other Corpora
+#  Extrapolation Guide: Applying Findings to Other Corpora
 
 ## Overview
 
@@ -6,7 +6,7 @@ This guide explains how to apply our ancient Greek authorship attribution findin
 
 ---
 
-## 🔢 Understanding Separation Scores
+##  Understanding Separation Scores
 
 ### **Definition**
 The separation score quantifies how effectively a feature distinguishes between authors:
@@ -36,7 +36,7 @@ For δέ particle frequency:
 
 ---
 
-## 📈 Feature Distribution Profiles
+##  Feature Distribution Profiles
 
 ### **Available Statistical Data for Each Feature:**
 
@@ -61,7 +61,7 @@ From our analysis, each of the 60 features includes:
 
 ---
 
-## 🎯 Classification Methodology for Unknown Texts
+##  Classification Methodology for Unknown Texts
 
 ### **Step 1: Feature Extraction**
 Extract the same 60 features from unknown text using identical methodology:
@@ -114,7 +114,7 @@ Establish confidence levels based on:
 
 ---
 
-## 📋 Practical Implementation Framework
+##  Practical Implementation Framework
 
 ### **Required Data Structures**
 
@@ -160,7 +160,7 @@ Based on our corpus analysis:
 
 ---
 
-## ⚖️ Validation and Quality Control
+##  Validation and Quality Control
 
 ### **Cross-Validation Protocol**
 
@@ -199,7 +199,7 @@ Based on our corpus analysis:
 
 ---
 
-## 🚀 Application Examples
+##  Application Examples
 
 ### **Example 1: Attributing Anonymous Fragment**
 
@@ -241,7 +241,7 @@ Primary Evidence:
 
 ---
 
-## 📊 Statistical Robustness 
+##  Statistical Robustness 
 
 ### **Feature Reliability Ranking**
 
@@ -276,7 +276,7 @@ Our 60 features ranked by reliability for extrapolation:
 
 ---
 
-## 🔮 Future Enhancements
+##  Future Enhancements
 
 ### **Expanding the Training Set**
 - Add more authors from same time period
@@ -295,7 +295,7 @@ Our 60 features ranked by reliability for extrapolation:
 
 ---
 
-## 📝 Conclusion
+##  Conclusion
 
 Our 60-feature framework provides a robust foundation for ancient Greek authorship attribution. The key to successful extrapolation lies in:
 

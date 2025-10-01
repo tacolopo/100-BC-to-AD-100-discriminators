@@ -1,6 +1,6 @@
-# 🏛️ AUTHENTIC Ancient Greek Authorship Attribution - SUCCESS! 
+#  AUTHENTIC Ancient Greek Authorship Attribution - SUCCESS! 
 
-## 🎯 Perfect Discrimination with Authentic Linguistic Features
+##  Perfect Discrimination with Authentic Linguistic Features
 
 **MAJOR DISCOVERY**: We have identified **60 authentic linguistic features** that can **perfectly distinguish between ALL 33 authors** in our ancient Greek corpus (100BC-100AD), using only features that would have been present in the original manuscripts.
 
@@ -8,11 +8,11 @@
 
 ---
 
-## 🏆 Top 3 Most Discriminative Authentic Features
+##  Top 3 Most Discriminative Authentic Features
 
 ### **#1 Particle δέ (de) Usage Frequency** 
 - **Feature Type**: Morphological (authentic Greek particle)
-- **Perfect Discrimination**: ✅ Every author has unique frequency
+- **Perfect Discrimination**:  Every author has unique frequency
 - **Separation Score**: 0.8776 (highest)
 - **Range**: 0.0000 (Didymus Chalcenterus) to 0.0072 (Bion of Phlossa)
 
@@ -26,7 +26,7 @@
 
 ### **#2 Particle τε (te) Usage Frequency**
 - **Feature Type**: Morphological (authentic Greek particle)  
-- **Perfect Discrimination**: ✅ Every author has unique frequency
+- **Perfect Discrimination**:  Every author has unique frequency
 - **Separation Score**: 0.7676
 - **Range**: 0.0000 (Isidorus of Charax) to 0.0207 (Scymnus)
 
@@ -40,7 +40,7 @@
 
 ### **#3 Dative Plural Case Endings Frequency**
 - **Feature Type**: Morphological (case system)
-- **Perfect Discrimination**: ✅ Every author has unique frequency  
+- **Perfect Discrimination**:  Every author has unique frequency  
 - **Separation Score**: 0.7648
 - **Range**: 0.0015 (Didymus Chalcenterus) to 0.0364 (Brutus)
 
@@ -54,7 +54,7 @@
 
 ---
 
-## 📊 Feature Categories with Perfect Discrimination
+##  Feature Categories with Perfect Discrimination
 
 ### **Morphological Features** (26 perfect discriminators)
 - Greek particles: δέ, τέ, μέν, γάρ, οῦν, etc.
@@ -82,20 +82,20 @@
 
 ---
 
-## 🔬 Methodology Validation
+##  Methodology Validation
 
-### ✅ **Authentic Features Only**
+###  **Authentic Features Only**
 - **EXCLUDED**: All punctuation (periods, commas, etc.) - modern additions
 - **INCLUDED**: Only linguistic features present in original Greek manuscripts
 - **FOCUS**: Morphology, phonetics, vocabulary, authentic stylistics
 
-### ✅ **Rigorous Standards**
+###  **Rigorous Standards**
 - Minimum 1,000 words per author
 - 33 authors qualified (4 excluded for insufficient text)
 - Statistical validation with separation scores
 - Perfect discrimination = 100% author identification accuracy
 
-### ✅ **Linguistic Authenticity**
+###  **Linguistic Authenticity**
 - Morphological patterns: authentic Greek grammar
 - Phonetic analysis: sound patterns in ancient Greek
 - Particle usage: fundamental Greek syntax elements
@@ -103,7 +103,7 @@
 
 ---
 
-## 🎓 Scholarly Significance
+##  Scholarly Significance
 
 ### **For Classical Studies:**
 - First comprehensive computational stylometry of ancient Greek authors
@@ -122,7 +122,7 @@
 
 ---
 
-## 📁 Complete Results Available
+##  Complete Results Available
 
 ### **Results Folder:**
 - `best_discriminative_features.json` - Complete ranked feature list
@@ -136,7 +136,7 @@
 
 ---
 
-## 🎉 **CONCLUSION: MISSION ACCOMPLISHED!**
+##  **CONCLUSION: MISSION ACCOMPLISHED!**
 
 We have successfully identified authentic linguistic features that can **perfectly differentiate all 33 ancient Greek authors** using only elements that would have existed in the original manuscripts. The Greek particle system emerges as the most powerful discriminator, followed by morphological case patterns and phonetic characteristics.
 

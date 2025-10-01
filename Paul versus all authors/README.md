@@ -2,7 +2,7 @@
 
 This folder contains the complete analysis of the 14 Pauline letters for single authorship probability using authentic ancient Greek linguistic features.
 
-## 📁 Contents
+##  Contents
 
 ### **Corpus Data**
 - `pauline_letters/` - Directory containing all 14 Pauline letters as individual .txt files
@@ -34,7 +34,7 @@ This folder contains the complete analysis of the 14 Pauline letters for single 
   - Detailed breakdown of all 60 features
   - Individual consistency scores and variance ratios
 
-## 🎯 **Key Findings**
+##  **Key Findings**
 
 **Single Authorship Probability: 12.3%** - Strong evidence for multiple authorship
 
@@ -62,7 +62,7 @@ This computational analysis aligns with modern biblical scholarship consensus:
 - **Pastoral Letters**: 1-2 Timothy, Titus (widely considered non-Pauline)
 - **Hebrews**: Almost universally recognized as non-Pauline
 
-## 🚀 **Usage**
+##  **Usage**
 
 To run the analysis:
 ```bash
@@ -70,7 +70,7 @@ cd "Paul all authors"
 python pauline_authorship_analyzer.py pauline_letters/
 ```
 
-## 📊 **Technical Details**
+##  **Technical Details**
 
 - **Features analyzed**: 60 (morphological, phonetic, vocabulary, character n-grams, word n-grams)
 - **Comparison baseline**: 33 ancient Greek authors with >1000 words each

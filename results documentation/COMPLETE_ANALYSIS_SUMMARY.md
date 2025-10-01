@@ -1,12 +1,12 @@
-# 📜 Complete Analysis Summary: Ancient Greek Authorship Attribution
+#  Complete Analysis Summary: Ancient Greek Authorship Attribution
 
-## 🎯 Mission Accomplished
+##  Mission Accomplished
 
 We have successfully identified **60 authentic linguistic features** that can **perfectly distinguish between ALL 33 authors** in our ancient Greek corpus (100BC-100AD), using only features that would have existed in the original manuscripts.
 
 ---
 
-## 📊 Updated Results Summary
+##  Updated Results Summary
 
 ### **Key Metrics:**
 - **Total Authors Analyzed**: 33 (meeting >1000 word threshold)
@@ -22,7 +22,7 @@ We have successfully identified **60 authentic linguistic features** that can **
 
 ---
 
-## 🏆 Top 10 Most Discriminative Authentic Features
+##  Top 10 Most Discriminative Authentic Features
 
 | Rank | Feature | Type | Separation Score | Description |
 |------|---------|------|------------------|-------------|
@@ -39,7 +39,7 @@ We have successfully identified **60 authentic linguistic features** that can **
 
 ---
 
-## 🔢 Understanding Separation Scores
+##  Understanding Separation Scores
 
 **Definition**: Separation score measures how effectively a feature distinguishes between authors.
 
@@ -63,7 +63,7 @@ This means the smallest difference between any two authors is 87.76% of the tota
 
 ---
 
-## 📈 Feature Categories Breakdown
+##  Feature Categories Breakdown
 
 ### **Morphological Features** (26 perfect discriminators)
 **Why These Work**: Greek morphology is fundamental to the language and reflects deep syntactic preferences
@@ -109,7 +109,7 @@ This means the smallest difference between any two authors is 87.76% of the tota
 
 ---
 
-## 🚀 Extrapolation to Other Corpora
+##  Extrapolation to Other Corpora
 
 ### **Required Data for Classification**
 
@@ -191,28 +191,28 @@ confidence = based on multiple feature agreement
 
 ---
 
-## 🔬 Methodological Strengths
+##  Methodological Strengths
 
 ### **Linguistic Authenticity**
-✅ **EXCLUDED**: All punctuation (modern editorial additions)  
-✅ **INCLUDED**: Only features present in original Greek manuscripts  
-✅ **FOCUS**: Morphology, phonetics, vocabulary, authentic stylistics
+ **EXCLUDED**: All punctuation (modern editorial additions)  
+ **INCLUDED**: Only features present in original Greek manuscripts  
+ **FOCUS**: Morphology, phonetics, vocabulary, authentic stylistics
 
 ### **Statistical Rigor**
-✅ **Perfect Discrimination**: All 60 features achieve 100% author separation  
-✅ **Large-Scale Analysis**: 2.15+ million words across 33 authors  
-✅ **Robust Filtering**: Only authors with >1000 words included  
-✅ **Comprehensive Coverage**: Multiple feature types for redundancy
+ **Perfect Discrimination**: All 60 features achieve 100% author separation  
+ **Large-Scale Analysis**: 2.15+ million words across 33 authors  
+ **Robust Filtering**: Only authors with >1000 words included  
+ **Comprehensive Coverage**: Multiple feature types for redundancy
 
 ### **Practical Applicability**
-✅ **Ranked Features**: Separation scores guide feature selection  
-✅ **Detailed Profiles**: Complete statistical data for extrapolation  
-✅ **Validation Framework**: Guidelines for testing new applications  
-✅ **Confidence Metrics**: Reliable uncertainty quantification
+ **Ranked Features**: Separation scores guide feature selection  
+ **Detailed Profiles**: Complete statistical data for extrapolation  
+ **Validation Framework**: Guidelines for testing new applications  
+ **Confidence Metrics**: Reliable uncertainty quantification
 
 ---
 
-## 📚 Scholarly Significance
+##  Scholarly Significance
 
 ### **For Classical Studies**
 - **First computational stylometry** of this scale for ancient Greek authors
@@ -234,7 +234,7 @@ confidence = based on multiple feature agreement
 
 ---
 
-## 📁 Complete Output Files
+##  Complete Output Files
 
 ### **Results Directory (`results/`)**
 - `best_discriminative_features.json` - Complete ranked feature list with author values
@@ -256,13 +256,13 @@ confidence = based on multiple feature agreement
 
 ---
 
-## 🎉 Final Conclusions
+##  Final Conclusions
 
 ### **Mission Success Metrics**
-✅ **Perfect Discrimination Achieved**: 60 features distinguish ALL 33 authors  
-✅ **Linguistic Authenticity Maintained**: No modern punctuation artifacts  
-✅ **Scalable Methodology Developed**: Framework applicable to other corpora  
-✅ **Comprehensive Documentation Created**: Full implementation guidance provided
+ **Perfect Discrimination Achieved**: 60 features distinguish ALL 33 authors  
+ **Linguistic Authenticity Maintained**: No modern punctuation artifacts  
+ **Scalable Methodology Developed**: Framework applicable to other corpora  
+ **Comprehensive Documentation Created**: Full implementation guidance provided
 
 ### **Key Scientific Contributions**
 

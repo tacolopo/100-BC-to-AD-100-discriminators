@@ -1,4 +1,4 @@
-# 🏛️ EXECUTIVE SUMMARY: Perfect Authorship Discrimination with Authentic Features!
+#  EXECUTIVE SUMMARY: Perfect Authorship Discrimination with Authentic Features!
 
 ## Key Discovery
 
@@ -10,7 +10,7 @@
 
 ### **#1 Most Discriminative: Greek Particle δέ (de) Frequency**
 - **Feature Type**: Morphological (authentic Greek particle)
-- **Perfect Discrimination**: ✅ Every author has a unique frequency of δέ usage
+- **Perfect Discrimination**:  Every author has a unique frequency of δέ usage
 - **Range**: 0.0000 (Didymus Chalcenterus) to 0.0072 (Bion of Phlossa)
 - **Separation Score**: 0.8776
 
@@ -24,7 +24,7 @@
 
 ### **#2 Greek Particle τε (te) Frequency**
 - **Feature Type**: Morphological (authentic Greek particle)
-- **Perfect Discrimination**: ✅ Every author has a unique frequency of τε usage
+- **Perfect Discrimination**:  Every author has a unique frequency of τε usage
 - **Range**: 0.0000 (Isidorus of Charax) to 0.0207 (Scymnus)
 - **Separation Score**: 0.7676
 
@@ -32,7 +32,7 @@
 
 ### **#3 Dative Plural Case Endings Frequency**
 - **Feature Type**: Morphological (Greek case system)
-- **Perfect Discrimination**: ✅ Every author has a unique frequency of dative plural usage
+- **Perfect Discrimination**:  Every author has a unique frequency of dative plural usage
 - **Range**: 0.0015 (Didymus Chalcenterus) to 0.0364 (Brutus)
 - **Separation Score**: 0.7648
 
@@ -164,4 +164,4 @@ These findings demonstrate that:
 
 ---
 
-**🏛️ Bottom Line**: We found 60 authentic linguistic features that can distinguish between all 33 ancient Greek authors with 100% accuracy, led by the δέ particle frequency with 87.76% separation efficiency. This provides a robust foundation for computational authorship attribution in classical literature using only features present in original manuscripts!
+** Bottom Line**: We found 60 authentic linguistic features that can distinguish between all 33 ancient Greek authors with 100% accuracy, led by the δέ particle frequency with 87.76% separation efficiency. This provides a robust foundation for computational authorship attribution in classical literature using only features present in original manuscripts!
