@@ -739,7 +739,13 @@ class GreekTextAnalyzer:
         print("=" * 50)
 
 def main():
-    base_path = "/home/user/Downloads/100BC to 100AD"
+    import sys
+    if len(sys.argv) > 1:
+        base_path = sys.argv[1]
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    
+    print(f"Using base path: {base_path}")
     analyzer = GreekTextAnalyzer(base_path)
     analyzer.run_complete_analysis()
 
