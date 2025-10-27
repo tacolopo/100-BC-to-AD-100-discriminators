@@ -44,7 +44,7 @@ class PaulVsSingleAuthorsAnalyzer:
         """Load discriminative features from the ancient Greek analysis."""
         print("Loading discriminative features...")
         
-        with open('../results/best_discriminative_features_LEMMATIZED.json', 'r', encoding='utf-8') as f:
+        with open('../results/best_discriminative_features.json', 'r', encoding='utf-8') as f:
             reference_features = json.load(f)
         
         # Use all perfect discriminators
