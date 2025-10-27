@@ -32,8 +32,9 @@ os.environ['CLTK_INTERACTIVE'] = 'FALSE'
 from cltk.nlp import NLP
 print("Downloading CLTK models (this may take a few minutes)...")
 CLTK_NLP = NLP("grc", suppress_banner=False)
+CLTK_NLP.pipeline[1].max_length = 10000000
 USE_LEMMATIZATION = True
-print("CLTK initialized. Lemmatization ENABLED.")
+print("CLTK initialized. Lemmatization ENABLED (max_length increased for large texts).")
 
 class PaulVsSingleAuthorsAnalyzer:
     def __init__(self):
@@ -96,41 +97,20 @@ class PaulVsSingleAuthorsAnalyzer:
         if not USE_LEMMATIZATION or CLTK_NLP is None:
             return text
         
-        words = text.split()
-        word_count = len(words)
-        
-        if word_count > 150000:
-            if filename:
-                print(f"    Lemmatizing {word_count} words from {filename} (chunking for large text)...")
-            chunk_size = 100000
-            lemmatized_chunks = []
-            
-            for i in range(0, word_count, chunk_size):
-                chunk = ' '.join(words[i:i+chunk_size])
-                try:
-                    doc = CLTK_NLP.analyze(text=chunk)
-                    lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
-                    lemmatized_chunks.extend(lemmas)
-                except Exception as e:
-                    lemmatized_chunks.extend(words[i:i+chunk_size])
-            
+        word_count = len(text.split())
+        if filename:
+            print(f"    Lemmatizing {word_count} words from {filename}...")
+        try:
+            doc = CLTK_NLP.analyze(text=text)
+            lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
+            result = ' '.join(lemmas)
             if filename:
                 print(f"    Lemmatization complete for {filename}")
-            return ' '.join(lemmatized_chunks)
-        else:
+            return result
+        except Exception as e:
             if filename:
-                print(f"    Lemmatizing {word_count} words from {filename}...")
-            try:
-                doc = CLTK_NLP.analyze(text=text)
-                lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
-                result = ' '.join(lemmas)
-                if filename:
-                    print(f"    Lemmatization complete for {filename}")
-                return result
-            except Exception as e:
-                if filename:
-                    print(f"    Lemmatization failed for {filename}: {e}, using original text")
-                return text
+                print(f"    Lemmatization failed for {filename}: {e}, using original text")
+            return text
     
     def clean_text(self, text, filename=""):
         """Clean and normalize Greek text."""
@@ -323,7 +303,7 @@ class PaulVsSingleAuthorsAnalyzer:
     
     def extract_author_features(self, author_name):
         """Extract features from an individual author's multiple texts WITH lemmatization."""
-        print(f"  Extracting features for {author_name} (with chunking for large texts)...")
+        print(f"  Extracting features for {author_name}...")
         
         author_dir = Path(f"../{author_name}")
         if not author_dir.exists():
