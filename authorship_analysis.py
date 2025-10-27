@@ -24,8 +24,9 @@ os.environ['CLTK_INTERACTIVE'] = 'FALSE'
 from cltk.nlp import NLP
 print("Downloading CLTK models (this may take a few minutes)...")
 CLTK_NLP = NLP("grc", suppress_banner=False)
+CLTK_NLP.pipeline[1].max_length = 10000000
 USE_LEMMATIZATION = True
-print("CLTK initialized. Lemmatization ENABLED.")
+print("CLTK initialized. Lemmatization ENABLED (max_length: 10M).")
 
 class GreekTextAnalyzer:
     def __init__(self, base_path):
