@@ -32,11 +32,8 @@ os.environ['CLTK_INTERACTIVE'] = 'FALSE'
 from cltk.nlp import NLP
 print("Downloading CLTK models (this may take a few minutes)...")
 CLTK_NLP = NLP("grc", suppress_banner=False)
-for process in CLTK_NLP.pipeline.processes:
-    if hasattr(process, 'nlp'):
-        process.nlp.max_length = 10000000
 USE_LEMMATIZATION = True
-print("CLTK initialized. Lemmatization ENABLED (max_length: 10M).")
+print("CLTK initialized. Lemmatization ENABLED (chunking for large texts).")
 
 class PaulVsSingleAuthorsAnalyzer:
     def __init__(self):
@@ -100,19 +97,42 @@ class PaulVsSingleAuthorsAnalyzer:
             return text
         
         word_count = len(text.split())
-        if filename:
-            print(f"    Lemmatizing {word_count} words from {filename}...")
-        try:
-            doc = CLTK_NLP.analyze(text=text)
-            lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
-            result = ' '.join(lemmas)
+        char_count = len(text)
+        
+        if char_count > 900000:
+            if filename:
+                print(f"    Lemmatizing {word_count} words from {filename} (chunking: {char_count} chars)...")
+            words = text.split()
+            chunk_size = 100000
+            lemmatized_words = []
+            
+            for i in range(0, len(words), chunk_size):
+                chunk_words = words[i:i+chunk_size]
+                chunk_text = ' '.join(chunk_words)
+                try:
+                    doc = CLTK_NLP.analyze(text=chunk_text)
+                    chunk_lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
+                    lemmatized_words.extend(chunk_lemmas)
+                except Exception as e:
+                    lemmatized_words.extend(chunk_words)
+            
             if filename:
                 print(f"    Lemmatization complete for {filename}")
-            return result
-        except Exception as e:
+            return ' '.join(lemmatized_words)
+        else:
             if filename:
-                print(f"    Lemmatization failed for {filename}: {e}, using original text")
-            return text
+                print(f"    Lemmatizing {word_count} words from {filename}...")
+            try:
+                doc = CLTK_NLP.analyze(text=text)
+                lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
+                result = ' '.join(lemmas)
+                if filename:
+                    print(f"    Lemmatization complete for {filename}")
+                return result
+            except Exception as e:
+                if filename:
+                    print(f"    Lemmatization failed for {filename}: {e}, using original text")
+                return text
     
     def clean_text(self, text, filename=""):
         """Clean and normalize Greek text."""

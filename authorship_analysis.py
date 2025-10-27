@@ -24,11 +24,16 @@ os.environ['CLTK_INTERACTIVE'] = 'FALSE'
 from cltk.nlp import NLP
 print("Downloading CLTK models (this may take a few minutes)...")
 CLTK_NLP = NLP("grc", suppress_banner=False)
-for process in CLTK_NLP.pipeline.processes:
-    if hasattr(process, 'nlp'):
-        process.nlp.max_length = 10000000
+try:
+    import spacy
+    for name, proc in CLTK_NLP.pipeline.processes.items():
+        if hasattr(proc, 'nlp') and hasattr(proc.nlp, 'max_length'):
+            proc.nlp.max_length = 10000000
+            print(f"Set max_length=10M for {name}")
+except Exception as e:
+    print(f"Warning: Could not set max_length: {e}")
 USE_LEMMATIZATION = True
-print("CLTK initialized. Lemmatization ENABLED (max_length: 10M).")
+print("CLTK initialized. Lemmatization ENABLED.")
 
 class GreekTextAnalyzer:
     def __init__(self, base_path):
@@ -86,16 +91,37 @@ class GreekTextAnalyzer:
             return text
         
         word_count = len(text.split())
-        print(f"    Lemmatizing {word_count} words from {filename}...")
-        try:
-            doc = CLTK_NLP.analyze(text=text)
-            lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
-            result = ' '.join(lemmas)
+        char_count = len(text)
+        
+        if char_count > 900000:
+            print(f"    Lemmatizing {word_count} words from {filename} (chunking large text: {char_count} chars)...")
+            words = text.split()
+            chunk_size = 100000
+            lemmatized_words = []
+            
+            for i in range(0, len(words), chunk_size):
+                chunk_words = words[i:i+chunk_size]
+                chunk_text = ' '.join(chunk_words)
+                try:
+                    doc = CLTK_NLP.analyze(text=chunk_text)
+                    chunk_lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
+                    lemmatized_words.extend(chunk_lemmas)
+                except Exception as e:
+                    lemmatized_words.extend(chunk_words)
+            
             print(f"    Lemmatization complete for {filename}")
-            return result
-        except Exception as e:
-            print(f"    Lemmatization failed for {filename}: {e}, using original text")
-            return text
+            return ' '.join(lemmatized_words)
+        else:
+            print(f"    Lemmatizing {word_count} words from {filename}...")
+            try:
+                doc = CLTK_NLP.analyze(text=text)
+                lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
+                result = ' '.join(lemmas)
+                print(f"    Lemmatization complete for {filename}")
+                return result
+            except Exception as e:
+                print(f"    Lemmatization failed for {filename}: {e}, using original text")
+                return text
     
     def clean_text(self, text, filename=""):
         text = unicodedata.normalize('NFD', text)
