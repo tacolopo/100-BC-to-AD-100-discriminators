@@ -141,9 +141,9 @@ class PaulVsSingleAuthorsAnalyzer:
         
         return statistics.mean(ttr_values) if ttr_values else 0
     
-    def extract_all_features(self, text):
+    def extract_all_features(self, text, filename=""):
         """Extract ALL discriminative features from text."""
-        cleaned_text = self.clean_text(text)
+        cleaned_text = self.clean_text(text, filename=filename)
         words = cleaned_text.split()
         total_words = len(words)
         total_chars = len(cleaned_text.replace(' ', ''))
@@ -290,7 +290,7 @@ class PaulVsSingleAuthorsAnalyzer:
                 with open(letter_file, 'r', encoding='utf-8') as f:
                     text = f.read()
                 
-                features = self.extract_all_features(text)
+                features = self.extract_all_features(text, filename=letter_file.name)
                 letter_name = letter_file.stem
                 paul_features[letter_name] = features
                 
@@ -316,7 +316,7 @@ class PaulVsSingleAuthorsAnalyzer:
                 with open(text_file, 'r', encoding='utf-8') as f:
                     text = f.read()
                 
-                features = self.extract_all_features(text)
+                features = self.extract_all_features(text, filename=f"{author_name}/{text_file.name}")
                 text_name = text_file.stem
                 author_features[text_name] = features
                 
@@ -328,6 +328,7 @@ class PaulVsSingleAuthorsAnalyzer:
     def calculate_author_variance(self, author_features):
         """Calculate variance for each feature across an author's texts."""
         feature_variances = {}
+        missing_features = []
         
         if not author_features:
             return {}
@@ -344,6 +345,12 @@ class PaulVsSingleAuthorsAnalyzer:
                 feature_variances[feature_name] = statistics.variance(values)
             elif len(values) == 1:
                 feature_variances[feature_name] = 0.0
+            else:
+                feature_variances[feature_name] = None
+                missing_features.append(feature_name)
+        
+        if missing_features:
+            print(f"  Note: {len(missing_features)} feature(s) missing: {', '.join(missing_features[:3])}{'...' if len(missing_features) > 3 else ''}")
         
         return feature_variances
     
@@ -396,6 +403,9 @@ class PaulVsSingleAuthorsAnalyzer:
             if feature_name in author_variances:
                 paul_var = paul_variances[feature_name]
                 author_var = author_variances[feature_name]
+                
+                if paul_var is None or author_var is None:
+                    continue
                 
                 if author_var > 0:
                     ratio = paul_var / author_var
