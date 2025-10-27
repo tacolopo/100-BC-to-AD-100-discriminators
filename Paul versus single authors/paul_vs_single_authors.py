@@ -32,9 +32,11 @@ os.environ['CLTK_INTERACTIVE'] = 'FALSE'
 from cltk.nlp import NLP
 print("Downloading CLTK models (this may take a few minutes)...")
 CLTK_NLP = NLP("grc", suppress_banner=False)
-CLTK_NLP.pipeline[1].max_length = 10000000
+for process in CLTK_NLP.pipeline.processes:
+    if hasattr(process, 'nlp'):
+        process.nlp.max_length = 10000000
 USE_LEMMATIZATION = True
-print("CLTK initialized. Lemmatization ENABLED (max_length increased for large texts).")
+print("CLTK initialized. Lemmatization ENABLED (max_length: 10M).")
 
 class PaulVsSingleAuthorsAnalyzer:
     def __init__(self):
