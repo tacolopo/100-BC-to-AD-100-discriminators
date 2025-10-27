@@ -6,10 +6,10 @@ sudo apt update
 sudo apt install -y python3-pip python3-dev git
 
 echo "Upgrading pip..."
-pip3 install --upgrade pip
+pip3 install --break-system-packages --upgrade pip
 
 echo "Installing Python packages..."
-pip3 install numpy pandas matplotlib seaborn scikit-learn 'cltk[stanza]'
+pip3 install --break-system-packages numpy pandas matplotlib seaborn scikit-learn 'cltk[stanza]'
 
 echo "Cloning repository..."
 cd ~
