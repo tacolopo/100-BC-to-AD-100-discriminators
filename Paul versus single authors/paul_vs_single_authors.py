@@ -329,13 +329,12 @@ class PaulVsSingleAuthorsAnalyzer:
         """Calculate variance for each feature across an author's texts."""
         feature_variances = {}
         
-        # Get all feature names from first text
         if not author_features:
             return {}
         
-        first_text = list(author_features.values())[0]
+        discriminative_feature_names = [f['feature'] for f in self.discriminative_features]
         
-        for feature_name in first_text.keys():
+        for feature_name in discriminative_feature_names:
             values = []
             for text_features in author_features.values():
                 if feature_name in text_features:
@@ -343,7 +342,7 @@ class PaulVsSingleAuthorsAnalyzer:
             
             if len(values) > 1:
                 feature_variances[feature_name] = statistics.variance(values)
-            else:
+            elif len(values) == 1:
                 feature_variances[feature_name] = 0.0
         
         return feature_variances
