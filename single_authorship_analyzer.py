@@ -95,13 +95,22 @@ class SingleAuthorshipAnalyzer:
     
     def clean_text(self, text):
         """Clean and normalize Greek text (same as original analysis)."""
+        import unicodedata
+        
+        # CRITICAL: Apply Unicode normalization FIRST to handle diacritical variations
+        text = unicodedata.normalize('NFD', text)
+        
         # Remove non-Greek characters including ALL punctuation
-        greek_pattern = r'[^\u0370-\u03FF\u1F00-\u1FFF\s]'
+        # Include combining diacritical marks (0300-036F)
+        greek_pattern = r'[^\u0370-\u03FF\u1F00-\u1FFF\u0300-\u036F\s]'
         text = re.sub(greek_pattern, '', text)
         
         # Normalize whitespace
         text = re.sub(r'\s+', ' ', text)
         text = text.strip().lower()
+        
+        # Apply NFC normalization at the end
+        text = unicodedata.normalize('NFC', text)
         
         return text
     
@@ -115,19 +124,32 @@ class SingleAuthorshipAnalyzer:
             
         features = {}
         
-        # Greek particles
+        # Comprehensive Greek particles (matching updated authorship_analysis.py)
         particles = {
-            'δε': ['δε', 'δέ'], 'τε': ['τε', 'τέ'], 'μεν': ['μεν', 'μέν'], 
-            'γαρ': ['γαρ', 'γάρ'], 'ουν': ['ουν', 'οῦν'], 'αν': ['αν', 'ἄν'],
-            'ει': ['ει', 'εἰ'], 'αλλα': ['αλλα', 'ἀλλά'], 'ετι': ['ετι', 'ἔτι']
+            'δε': ['δε', 'δέ', 'δὲ'],
+            'τε': ['τε', 'τέ', 'τὲ'],
+            'μεν': ['μεν', 'μέν', 'μὲν'],
+            'γαρ': ['γαρ', 'γάρ', 'γὰρ'],
+            'ουν': ['ουν', 'οῦν', 'οὖν'],
+            'αν': ['αν', 'ἄν', 'ἂν'],
+            'ει': ['ει', 'εἰ', 'εἲ'],
+            'αλλα': ['αλλα', 'ἀλλά', 'ἀλλὰ', 'αλλά'],
+            'ετι': ['ετι', 'ἔτι', 'ἐτι', 'ἒτι'],
+            'μη': ['μη', 'μή', 'μὴ'],
+            'ουδε': ['ουδε', 'οὐδέ', 'οὐδὲ'],
+            'ουτε': ['ουτε', 'οὔτε', 'οὒτε'],
+            'μηδε': ['μηδε', 'μηδέ', 'μηδὲ'],
+            'αρα': ['αρα', 'ἄρα', 'ἆρα', 'ἀρα'],
+            'δη': ['δη', 'δή', 'δὴ'],
+            'γε': ['γε', 'γέ', 'γὲ'],
+            'περ': ['περ', 'πέρ', 'πὲρ'],
+            'τοι': ['τοι', 'τοί', 'τοὶ'],
+            'που': ['που', 'πού', 'ποὺ'],
         }
         
-        for particle_key, variants in particles.items():
-            count = 0
-            for word in words:
-                if word in variants:
-                    count += 1
-            features[f'particle_{variants[1]}_freq'] = count / total_words
+        for particle_base, variants in particles.items():
+            count = sum(1 for word in words if word in variants)
+            features[f'particle_{particle_base}_freq'] = count / total_words
         
         # Case endings
         case_endings = {
@@ -178,6 +200,24 @@ class SingleAuthorshipAnalyzer:
         
         return features
     
+    def calculate_mattr(self, words, window_size=100):
+        """Calculate Moving Average Type-Token Ratio (MATTR)."""
+        if len(words) < 50:
+            return len(set(words)) / len(words) if words else 0
+        
+        window_size = min(window_size, len(words) // 2)
+        if window_size < 10:
+            return len(set(words)) / len(words)
+        
+        ttr_values = []
+        for i in range(len(words) - window_size + 1):
+            window = words[i:i + window_size]
+            window_types = len(set(window))
+            window_ttr = window_types / window_size
+            ttr_values.append(window_ttr)
+        
+        return statistics.mean(ttr_values) if ttr_values else 0
+    
     def extract_vocabulary_features(self, text):
         """Extract vocabulary richness features."""
         words = text.split()
@@ -189,8 +229,13 @@ class SingleAuthorshipAnalyzer:
         
         features = {}
         
-        # Type-Token Ratio
-        features['ttr'] = unique_words / total_words
+        # Simple TTR (kept for backward compatibility)
+        features['ttr_simple'] = unique_words / total_words
+        
+        # MATTR - better measure
+        features['mattr_50'] = self.calculate_mattr(words, window_size=50)
+        features['mattr_100'] = self.calculate_mattr(words, window_size=100)
+        features['mattr_200'] = self.calculate_mattr(words, window_size=200)
         
         # Hapax legomena ratio
         word_freq = Counter(words)

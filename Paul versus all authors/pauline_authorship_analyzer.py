@@ -56,11 +56,37 @@ class PaulineAuthorshipAnalyzer:
     
     def clean_text(self, text):
         """Clean and normalize Greek text."""
-        # Remove non-Greek characters
-        greek_pattern = r'[^\u0370-\u03FF\u1F00-\u1FFF\s]'
+        import unicodedata
+        
+        # CRITICAL: Apply Unicode normalization FIRST
+        text = unicodedata.normalize('NFD', text)
+        
+        # Remove non-Greek characters (include combining diacriticals)
+        greek_pattern = r'[^\u0370-\u03FF\u1F00-\u1FFF\u0300-\u036F\s]'
         text = re.sub(greek_pattern, '', text)
         text = re.sub(r'\s+', ' ', text).strip().lower()
+        
+        # Apply NFC normalization at the end
+        text = unicodedata.normalize('NFC', text)
         return text
+    
+    def calculate_mattr(self, words, window_size=100):
+        """Calculate Moving Average Type-Token Ratio (MATTR)."""
+        if len(words) < 50:
+            return len(set(words)) / len(words) if words else 0
+        
+        window_size = min(window_size, len(words) // 2)
+        if window_size < 10:
+            return len(set(words)) / len(words)
+        
+        ttr_values = []
+        for i in range(len(words) - window_size + 1):
+            window = words[i:i + window_size]
+            window_types = len(set(window))
+            window_ttr = window_types / window_size
+            ttr_values.append(window_ttr)
+        
+        return statistics.mean(ttr_values) if ttr_values else 0
     
     def extract_all_features(self, text):
         """Extract ALL discriminative features from text (same as original analysis)."""
@@ -75,17 +101,27 @@ class PaulineAuthorshipAnalyzer:
         features = {}
         
         # MORPHOLOGICAL FEATURES
-        # Particles
+        # Comprehensive Greek particles
         particles = {
-            'particle_δέ_freq': ['δε', 'δέ'],
-            'particle_τε_freq': ['τε', 'τέ'], 
-            'particle_μέν_freq': ['μεν', 'μέν'],
-            'particle_γάρ_freq': ['γαρ', 'γάρ'],
-            'particle_οῦν_freq': ['ουν', 'οῦν'],
-            'particle_ἄν_freq': ['αν', 'ἄν'],
-            'particle_εἰ_freq': ['ει', 'εἰ'],
-            'particle_ἀλλά_freq': ['αλλα', 'ἀλλά'],
-            'particle_ἔτι_freq': ['ετι', 'ἔτι']
+            'particle_δε_freq': ['δε', 'δέ', 'δὲ'],
+            'particle_τε_freq': ['τε', 'τέ', 'τὲ'],
+            'particle_μεν_freq': ['μεν', 'μέν', 'μὲν'],
+            'particle_γαρ_freq': ['γαρ', 'γάρ', 'γὰρ'],
+            'particle_ουν_freq': ['ουν', 'οῦν', 'οὖν'],
+            'particle_αν_freq': ['αν', 'ἄν', 'ἂν'],
+            'particle_ει_freq': ['ει', 'εἰ', 'εἲ'],
+            'particle_αλλα_freq': ['αλλα', 'ἀλλά', 'ἀλλὰ', 'αλλά'],
+            'particle_ετι_freq': ['ετι', 'ἔτι', 'ἐτι', 'ἒτι'],
+            'particle_μη_freq': ['μη', 'μή', 'μὴ'],
+            'particle_ουδε_freq': ['ουδε', 'οὐδέ', 'οὐδὲ'],
+            'particle_ουτε_freq': ['ουτε', 'οὔτε', 'οὒτε'],
+            'particle_μηδε_freq': ['μηδε', 'μηδέ', 'μηδὲ'],
+            'particle_αρα_freq': ['αρα', 'ἄρα', 'ἆρα', 'ἀρα'],
+            'particle_δη_freq': ['δη', 'δή', 'δὴ'],
+            'particle_γε_freq': ['γε', 'γέ', 'γὲ'],
+            'particle_περ_freq': ['περ', 'πέρ', 'πὲρ'],
+            'particle_τοι_freq': ['τοι', 'τοί', 'τοὶ'],
+            'particle_που_freq': ['που', 'πού', 'ποὺ'],
         }
         
         for feature_name, variants in particles.items():
@@ -151,7 +187,12 @@ class PaulineAuthorshipAnalyzer:
         # VOCABULARY FEATURES
         if total_words > 0:
             unique_words = len(set(words))
-            features['ttr'] = unique_words / total_words
+            features['ttr_simple'] = unique_words / total_words
+            
+            # MATTR - better measure
+            features['mattr_50'] = self.calculate_mattr(words, window_size=50)
+            features['mattr_100'] = self.calculate_mattr(words, window_size=100)
+            features['mattr_200'] = self.calculate_mattr(words, window_size=200)
             
             word_freq = Counter(words)
             hapax_count = sum(1 for freq in word_freq.values() if freq == 1)

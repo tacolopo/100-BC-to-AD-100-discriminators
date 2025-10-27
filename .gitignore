@@ -55,3 +55,6 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+analysis_run*.log
+results/*_OLD.json
