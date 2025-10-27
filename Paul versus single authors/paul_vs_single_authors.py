@@ -96,20 +96,41 @@ class PaulVsSingleAuthorsAnalyzer:
         if not USE_LEMMATIZATION or CLTK_NLP is None:
             return text
         
-        word_count = len(text.split())
-        if filename:
-            print(f"    Lemmatizing {word_count} words from {filename}...")
-        try:
-            doc = CLTK_NLP.analyze(text=text)
-            lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
-            result = ' '.join(lemmas)
+        words = text.split()
+        word_count = len(words)
+        
+        if word_count > 150000:
+            if filename:
+                print(f"    Lemmatizing {word_count} words from {filename} (chunking for large text)...")
+            chunk_size = 100000
+            lemmatized_chunks = []
+            
+            for i in range(0, word_count, chunk_size):
+                chunk = ' '.join(words[i:i+chunk_size])
+                try:
+                    doc = CLTK_NLP.analyze(text=chunk)
+                    lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
+                    lemmatized_chunks.extend(lemmas)
+                except Exception as e:
+                    lemmatized_chunks.extend(words[i:i+chunk_size])
+            
             if filename:
                 print(f"    Lemmatization complete for {filename}")
-            return result
-        except Exception as e:
+            return ' '.join(lemmatized_chunks)
+        else:
             if filename:
-                print(f"    Lemmatization failed for {filename}: {e}, using original text")
-            return text
+                print(f"    Lemmatizing {word_count} words from {filename}...")
+            try:
+                doc = CLTK_NLP.analyze(text=text)
+                lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
+                result = ' '.join(lemmas)
+                if filename:
+                    print(f"    Lemmatization complete for {filename}")
+                return result
+            except Exception as e:
+                if filename:
+                    print(f"    Lemmatization failed for {filename}: {e}, using original text")
+                return text
     
     def clean_text(self, text, filename=""):
         """Clean and normalize Greek text."""
@@ -301,8 +322,8 @@ class PaulVsSingleAuthorsAnalyzer:
         return paul_features
     
     def extract_author_features(self, author_name):
-        """Extract features from an individual author's multiple texts."""
-        print(f"  Extracting features for {author_name}...")
+        """Extract features from an individual author's multiple texts WITH lemmatization."""
+        print(f"  Extracting features for {author_name} (with chunking for large texts)...")
         
         author_dir = Path(f"../{author_name}")
         if not author_dir.exists():
