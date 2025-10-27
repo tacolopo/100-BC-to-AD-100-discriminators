@@ -11,8 +11,8 @@ pip3 install --break-system-packages --upgrade pip
 echo "Installing Python packages..."
 pip3 install --break-system-packages numpy pandas matplotlib seaborn scikit-learn spacy 'cltk[stanza]'
 
-echo "Installing spaCy Greek model..."
-pip3 install --break-system-packages https://huggingface.co/chcaa/grc_odycy_joint_sm/resolve/v0.0.1/grc_odycy_joint_sm-0.0.1-py3-none-any.whl
+echo "Installing spaCy Greek model (odyCy)..."
+pip3 install --break-system-packages https://huggingface.co/chcaa/grc_odycy_joint_sm/resolve/main/grc_odycy_joint_sm-any-py3-none-any.whl
 
 echo "Pre-downloading CLTK models..."
 python3 << 'PYEOF'
