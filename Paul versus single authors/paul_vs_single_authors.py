@@ -245,8 +245,11 @@ class PaulVsSingleAuthorsAnalyzer:
         
         # PHONETIC FEATURES
         if total_chars > 0:
-            vowels = ['α', 'ε', 'η', 'ι', 'ο', 'υ', 'ω']
-            for vowel in vowels:
+            vowels = ['α', 'ε', 'η', 'ι', 'ο', 'υ', 'ω', 'ά', 'έ', 'ή', 'ί', 'ό', 'ύ', 'ώ']
+            vowel_count = sum(cleaned_text.count(vowel) for vowel in vowels)
+            features['vowel_ratio'] = vowel_count / total_chars
+            
+            for vowel in ['α', 'ε', 'η', 'ι', 'ο', 'υ', 'ω']:
                 features[f'vowel_{vowel}_freq'] = cleaned_text.count(vowel) / total_chars
             
             clusters = ['στ', 'σκ', 'σπ', 'σφ', 'σχ', 'κτ', 'πτ', 'φθ', 'χθ', 'νθ', 'μπ', 'ντ']
