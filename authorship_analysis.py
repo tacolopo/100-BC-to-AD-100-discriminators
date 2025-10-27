@@ -19,8 +19,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 print("Initializing CLTK for Greek lemmatization...")
+import os
+os.environ['CLTK_INTERACTIVE'] = 'FALSE'
 from cltk.nlp import NLP
-CLTK_NLP = NLP("grc", suppress_banner=True)
+print("Downloading CLTK models (this may take a few minutes)...")
+CLTK_NLP = NLP("grc", suppress_banner=False)
 USE_LEMMATIZATION = True
 print("CLTK initialized. Lemmatization ENABLED.")
 

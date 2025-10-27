@@ -11,6 +11,16 @@ pip3 install --break-system-packages --upgrade pip
 echo "Installing Python packages..."
 pip3 install --break-system-packages numpy pandas matplotlib seaborn scikit-learn 'cltk[stanza]'
 
+echo "Pre-downloading CLTK models..."
+python3 << 'PYEOF'
+import os
+os.environ['CLTK_INTERACTIVE'] = 'FALSE'
+from cltk.nlp import NLP
+print("Downloading Greek NLP models...")
+nlp = NLP("grc", suppress_banner=False)
+print("CLTK models downloaded successfully!")
+PYEOF
+
 echo "Cloning repository..."
 cd ~
 if [ -d "100-BC-to-AD-100-discriminators" ]; then
