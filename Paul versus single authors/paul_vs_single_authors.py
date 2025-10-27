@@ -27,6 +27,14 @@ from pathlib import Path
 from collections import Counter
 import pickle
 
+print("Initializing CLTK for Greek lemmatization...")
+os.environ['CLTK_INTERACTIVE'] = 'FALSE'
+from cltk.nlp import NLP
+print("Downloading CLTK models (this may take a few minutes)...")
+CLTK_NLP = NLP("grc", suppress_banner=False)
+USE_LEMMATIZATION = True
+print("CLTK initialized. Lemmatization ENABLED.")
+
 class PaulVsSingleAuthorsAnalyzer:
     def __init__(self):
         self.load_reference_data()
@@ -36,7 +44,7 @@ class PaulVsSingleAuthorsAnalyzer:
         """Load discriminative features from the ancient Greek analysis."""
         print("Loading discriminative features...")
         
-        with open('../results/best_discriminative_features.json', 'r', encoding='utf-8') as f:
+        with open('../results/best_discriminative_features_LEMMATIZED.json', 'r', encoding='utf-8') as f:
             reference_features = json.load(f)
         
         # Use all perfect discriminators
@@ -84,20 +92,35 @@ class PaulVsSingleAuthorsAnalyzer:
         for author, info in self.multi_text_authors.items():
             print(f"  - {author}: {info['num_texts']} texts, {info['total_words']} words")
     
-    def clean_text(self, text):
+    def lemmatize_text(self, text, filename=""):
+        if not USE_LEMMATIZATION or CLTK_NLP is None:
+            return text
+        
+        word_count = len(text.split())
+        if filename:
+            print(f"    Lemmatizing {word_count} words from {filename}...")
+        try:
+            doc = CLTK_NLP.analyze(text=text)
+            lemmas = [word.lemma if word.lemma else word.string for word in doc.words]
+            result = ' '.join(lemmas)
+            if filename:
+                print(f"    Lemmatization complete for {filename}")
+            return result
+        except Exception as e:
+            if filename:
+                print(f"    Lemmatization failed for {filename}: {e}, using original text")
+            return text
+    
+    def clean_text(self, text, filename=""):
         """Clean and normalize Greek text."""
         import unicodedata
         
-        # CRITICAL: Apply Unicode normalization FIRST
         text = unicodedata.normalize('NFD', text)
-        
-        # Remove non-Greek characters (include combining diacriticals)
         greek_pattern = r'[^\u0370-\u03FF\u1F00-\u1FFF\u0300-\u036F\s]'
         text = re.sub(greek_pattern, '', text)
         text = re.sub(r'\s+', ' ', text).strip().lower()
-        
-        # Apply NFC normalization at the end
         text = unicodedata.normalize('NFC', text)
+        text = self.lemmatize_text(text, filename)
         return text
     
     def calculate_mattr(self, words, window_size=100):
