@@ -1,0 +1,474 @@
+{
+    "original_authors_count": 32,
+    "with_plato_count": 33,
+    "original_discriminators": 66,
+    "tested_discriminators": 66,
+    "surviving_count": 66,
+    "broken_count": 0,
+    "survival_rate_percent": 100.0,
+    "surviving_discriminators": [
+      {
+        "feature": "particle_αν_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.011102852041861903
+      },
+      {
+        "feature": "particle_ουν_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.006415444305120893
+      },
+      {
+        "feature": "particle_δη_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.007874289247270743
+      },
+      {
+        "feature": "particle_τε_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.01195384492478265
+      },
+      {
+        "feature": "accusative_sg_fem_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0032893480005140694
+      },
+      {
+        "feature": "particle_γαρ_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.009253245061636198
+      },
+      {
+        "feature": "particle_μεν_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.012198722468643517
+      },
+      {
+        "feature": "genitive_sg_masc_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.005705125755907454
+      },
+      {
+        "feature": "particle_δε_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.018430074435826452
+      },
+      {
+        "feature": "accusative_sg_masc_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.01210146613916686
+      },
+      {
+        "feature": "accusative_pl_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0070858182904421346
+      },
+      {
+        "feature": "nominative_pl_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.027426284912417203
+      },
+      {
+        "feature": "genitive_pl_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.008751332932729882
+      },
+      {
+        "feature": "infinitive_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.02483509841993199
+      },
+      {
+        "feature": "genitive_sg_fem_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.01776838405135134
+      },
+      {
+        "feature": "participle_nom_sg_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.00964921726021973
+      },
+      {
+        "feature": "aorist_3sg_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.07435593732524254
+      },
+      {
+        "feature": "dative_sg_freq",
+        "feature_type": "morphological",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.14671464645587515
+      },
+      {
+        "feature": "length_14_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0017905584944720198
+      },
+      {
+        "feature": "length_13_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.003539435704882615
+      },
+      {
+        "feature": "length_12_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.006924303314704115
+      },
+      {
+        "feature": "length_11_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.011073327798985061
+      },
+      {
+        "feature": "length_1_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.11677880089892637
+      },
+      {
+        "feature": "length_10_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.016952125571815115
+      },
+      {
+        "feature": "length_9_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.03109944807033022
+      },
+      {
+        "feature": "length_7_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.06355874803316441
+      },
+      {
+        "feature": "length_6_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.07913886467129097
+      },
+      {
+        "feature": "length_8_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.05871677220136228
+      },
+      {
+        "feature": "length_4_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.13319775337878909
+      },
+      {
+        "feature": "length_5_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.14205676296201097
+      },
+      {
+        "feature": "length_3_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.188538341571176
+      },
+      {
+        "feature": "length_2_freq",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.14531311327930976
+      },
+      {
+        "feature": "avg_length",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 4.35194981573399
+      },
+      {
+        "feature": "std_length",
+        "feature_type": "word_lengths",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 2.5877019495875673
+      },
+      {
+        "feature": "cluster_σχ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0009358124448289678
+      },
+      {
+        "feature": "cluster_νθ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0011381394851395377
+      },
+      {
+        "feature": "cluster_κτ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0007267012631273136
+      },
+      {
+        "feature": "cluster_χθ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.00022068412878056257
+      },
+      {
+        "feature": "cluster_σπ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0008484167410261772
+      },
+      {
+        "feature": "diphthong_αυ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0011680695206884386
+      },
+      {
+        "feature": "cluster_πτ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.000535947169895652
+      },
+      {
+        "feature": "diphthong_οι_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.004220135012395025
+      },
+      {
+        "feature": "cluster_σκ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.001447416519144847
+      },
+      {
+        "feature": "cluster_μπ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.000607779255213014
+      },
+      {
+        "feature": "diphthong_ευ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0009469863247672241
+      },
+      {
+        "feature": "cluster_στ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.004328681274652373
+      },
+      {
+        "feature": "cluster_ντ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0032795337618782335
+      },
+      {
+        "feature": "diphthong_ου_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0018069760128723096
+      },
+      {
+        "feature": "diphthong_ει_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0026398291354130586
+      },
+      {
+        "feature": "diphthong_αι_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.0073528120665133185
+      },
+      {
+        "feature": "vowel_η_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.012044644439159022
+      },
+      {
+        "feature": "vowel_υ_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.010174216750923042
+      },
+      {
+        "feature": "vowel_ω_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.031046226341304568
+      },
+      {
+        "feature": "vowel_ι_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.03619219712001226
+      },
+      {
+        "feature": "vowel_ε_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.04971019744245851
+      },
+      {
+        "feature": "vowel_α_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.061766414828696437
+      },
+      {
+        "feature": "vowel_ο_freq",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.07253603975347228
+      },
+      {
+        "feature": "vowel_ratio",
+        "feature_type": "phonetic",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.4014799005843939
+      },
+      {
+        "feature": "avg_word_freq",
+        "feature_type": "vocabulary",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 15.361577248352587
+      },
+      {
+        "feature": "hapax_ratio",
+        "feature_type": "vocabulary",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.04212588442474618
+      },
+      {
+        "feature": "ttr_simple",
+        "feature_type": "vocabulary",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.06509748210309865
+      },
+      {
+        "feature": "dis_ratio",
+        "feature_type": "vocabulary",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.008669707084776258
+      },
+      {
+        "feature": "top10_ratio",
+        "feature_type": "vocabulary",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.2717341845577789
+      },
+      {
+        "feature": "mattr_200",
+        "feature_type": "vocabulary",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.5511588536463753
+      },
+      {
+        "feature": "mattr_100",
+        "feature_type": "vocabulary",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.6515760145492697
+      },
+      {
+        "feature": "mattr_50",
+        "feature_type": "vocabulary",
+        "unique_values_count": 33,
+        "still_perfect_discriminator": true,
+        "plato_value": 0.7522926483589203
+      }
+    ],
+    "broken_discriminators": []
+  }
