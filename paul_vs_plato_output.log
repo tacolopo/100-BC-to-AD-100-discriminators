@@ -1,0 +1,101 @@
+Initializing CLTK for Greek lemmatization...
+‎𐤀 CLTK version '2.0.1'. When using the CLTK in research, please cite: https://aclanthology.org/2021.acl-demo.3/
+Selected language "Ionic-Attic Ancient Greek" ("anci1242") without dialect.
+Pipeline for `NLP("anci1242", backend="stanza")`: ['MultilingualNormalizeProcess', 'StanzaAnalyzeProcess']
+Warning: Could not set max_length: 'list' object has no attribute 'items'
+CLTK initialized.
+
+Loading 66 perfect discriminators...
+Loaded 66 discriminative features
+
+Loading Paul's feature values from existing analysis...
+  Warning: Paul not found in feature particle_αν_freq
+  Warning: Paul not found in feature particle_ουν_freq
+  Warning: Paul not found in feature particle_δη_freq
+  Warning: Paul not found in feature particle_τε_freq
+  Warning: Paul not found in feature accusative_sg_fem_freq
+  Warning: Paul not found in feature particle_γαρ_freq
+  Warning: Paul not found in feature particle_μεν_freq
+  Warning: Paul not found in feature genitive_sg_masc_freq
+  Warning: Paul not found in feature particle_δε_freq
+  Warning: Paul not found in feature accusative_sg_masc_freq
+  Warning: Paul not found in feature accusative_pl_freq
+  Warning: Paul not found in feature nominative_pl_freq
+  Warning: Paul not found in feature genitive_pl_freq
+  Warning: Paul not found in feature infinitive_freq
+  Warning: Paul not found in feature genitive_sg_fem_freq
+  Warning: Paul not found in feature participle_nom_sg_freq
+  Warning: Paul not found in feature aorist_3sg_freq
+  Warning: Paul not found in feature dative_sg_freq
+  Warning: Paul not found in feature length_14_freq
+  Warning: Paul not found in feature length_13_freq
+  Warning: Paul not found in feature length_12_freq
+  Warning: Paul not found in feature length_11_freq
+  Warning: Paul not found in feature length_1_freq
+  Warning: Paul not found in feature length_10_freq
+  Warning: Paul not found in feature length_9_freq
+  Warning: Paul not found in feature length_7_freq
+  Warning: Paul not found in feature length_6_freq
+  Warning: Paul not found in feature length_8_freq
+  Warning: Paul not found in feature length_4_freq
+  Warning: Paul not found in feature length_5_freq
+  Warning: Paul not found in feature length_3_freq
+  Warning: Paul not found in feature length_2_freq
+  Warning: Paul not found in feature avg_length
+  Warning: Paul not found in feature std_length
+  Warning: Paul not found in feature cluster_σχ_freq
+  Warning: Paul not found in feature cluster_νθ_freq
+  Warning: Paul not found in feature cluster_κτ_freq
+  Warning: Paul not found in feature cluster_χθ_freq
+  Warning: Paul not found in feature cluster_σπ_freq
+  Warning: Paul not found in feature diphthong_αυ_freq
+  Warning: Paul not found in feature cluster_πτ_freq
+  Warning: Paul not found in feature diphthong_οι_freq
+  Warning: Paul not found in feature cluster_σκ_freq
+  Warning: Paul not found in feature cluster_μπ_freq
+  Warning: Paul not found in feature diphthong_ευ_freq
+  Warning: Paul not found in feature cluster_στ_freq
+  Warning: Paul not found in feature cluster_ντ_freq
+  Warning: Paul not found in feature diphthong_ου_freq
+  Warning: Paul not found in feature diphthong_ει_freq
+  Warning: Paul not found in feature diphthong_αι_freq
+  Warning: Paul not found in feature vowel_η_freq
+  Warning: Paul not found in feature vowel_υ_freq
+  Warning: Paul not found in feature vowel_ω_freq
+  Warning: Paul not found in feature vowel_ι_freq
+  Warning: Paul not found in feature vowel_ε_freq
+  Warning: Paul not found in feature vowel_α_freq
+  Warning: Paul not found in feature vowel_ο_freq
+  Warning: Paul not found in feature vowel_ratio
+  Warning: Paul not found in feature avg_word_freq
+  Warning: Paul not found in feature hapax_ratio
+  Warning: Paul not found in feature ttr_simple
+  Warning: Paul not found in feature dis_ratio
+  Warning: Paul not found in feature top10_ratio
+  Warning: Paul not found in feature mattr_200
+  Warning: Paul not found in feature mattr_100
+  Warning: Paul not found in feature mattr_50
+Loaded 0 feature values for Paul
+
+Loading Plato's texts...
+  Processing Alcibiades 1
+.txt...
+    Lemmatizing 11171 words from Plato/Alcibiades 1
+.txt...
+2025-11-04 13:08:19 INFO: "ancient_greek" is an alias for "grc"
+2025-11-04 13:08:20 INFO: Loading these models for language: grc (Ancient_Greek):
+================================
+| Processor | Package          |
+--------------------------------
+| tokenize  | perseus          |
+| pos       | perseus_nocharlm |
+| lemma     | perseus_nocharlm |
+| depparse  | perseus_nocharlm |
+================================
+
+2025-11-04 13:08:20 INFO: Using device: cpu
+2025-11-04 13:08:20 INFO: Loading: tokenize
+2025-11-04 13:08:21 INFO: Loading: pos
+2025-11-04 13:08:22 INFO: Loading: lemma
+2025-11-04 13:08:23 INFO: Loading: depparse
+2025-11-04 13:08:23 INFO: Done loading processors!
