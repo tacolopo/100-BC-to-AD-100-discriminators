@@ -33,43 +33,14 @@ class PaulPlatoComparison:
     def __init__(self, base_path):
         self.base_path = Path(base_path)
         self.discriminative_features = []
-        self.paul_features = {}
-        self.plato_features = {}
+        self.paul_texts = {}
+        self.plato_texts = {}
         
     def load_discriminative_features(self):
         print("Loading 66 perfect discriminators...")
         with open(self.base_path / 'results' / 'best_discriminative_features.json', 'r', encoding='utf-8') as f:
             self.discriminative_features = json.load(f)
         print(f"Loaded {len(self.discriminative_features)} discriminative features\n")
-        
-    def load_paul_texts(self):
-        print("Loading Paul's letters...")
-        paul_dir = self.base_path / 'Paul versus all authors' / 'pauline_letters'
-        
-        if not paul_dir.exists():
-            raise FileNotFoundError(f"Paul letters directory not found at {paul_dir}")
-        
-        paul_texts = []
-        total_words = 0
-        
-        for text_file in sorted(paul_dir.glob("*.txt")):
-            print(f"  Processing {text_file.name}...")
-            try:
-                with open(text_file, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                    content = self.clean_text(content, f"Paul/{text_file.name}")
-                    if content:
-                        words = len(content.split())
-                        total_words += words
-                        paul_texts.append(content)
-                        print(f"  Completed {text_file.name}: {words} words\n")
-            except Exception as e:
-                print(f"  Error reading {text_file}: {e}\n")
-                continue
-        
-        combined_paul = ' '.join(paul_texts)
-        print(f"✓ Paul: {total_words:,} words total from {len(paul_texts)} letters\n")
-        return combined_paul
         
     def lemmatize_text(self, text, filename=""):
         word_count = len(text.split())
@@ -115,15 +86,35 @@ class PaulPlatoComparison:
         text = self.lemmatize_text(text, filename)
         return text
     
+    def load_paul_texts(self):
+        print("Loading Paul's letters individually...")
+        paul_dir = self.base_path / 'Paul versus all authors' / 'pauline_letters'
+        
+        if not paul_dir.exists():
+            raise FileNotFoundError(f"Paul letters directory not found at {paul_dir}")
+        
+        for text_file in sorted(paul_dir.glob("*.txt")):
+            print(f"  Processing {text_file.name}...")
+            try:
+                with open(text_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    content = self.clean_text(content, f"Paul/{text_file.name}")
+                    if content:
+                        words = len(content.split())
+                        self.paul_texts[text_file.stem] = content
+                        print(f"  Completed {text_file.name}: {words} words\n")
+            except Exception as e:
+                print(f"  Error reading {text_file}: {e}\n")
+                continue
+        
+        print(f"✓ Loaded {len(self.paul_texts)} Pauline letters\n")
+    
     def load_plato_texts(self):
-        print("Loading Plato's texts...")
+        print("Loading Plato's works individually...")
         plato_dir = self.base_path / 'Plato'
         
         if not plato_dir.exists():
             raise FileNotFoundError(f"Plato directory not found at {plato_dir}")
-        
-        plato_texts = []
-        total_words = 0
         
         for text_file in sorted(plato_dir.glob("*.txt")):
             print(f"  Processing {text_file.name}...")
@@ -133,16 +124,13 @@ class PaulPlatoComparison:
                     content = self.clean_text(content, f"Plato/{text_file.name}")
                     if content:
                         words = len(content.split())
-                        total_words += words
-                        plato_texts.append(content)
+                        self.plato_texts[text_file.stem] = content
                         print(f"  Completed {text_file.name}: {words} words\n")
             except Exception as e:
                 print(f"  Error reading {text_file}: {e}\n")
                 continue
         
-        combined_plato = ' '.join(plato_texts)
-        print(f"✓ Plato: {total_words:,} words total from {len(plato_texts)} texts\n")
-        return combined_plato
+        print(f"✓ Loaded {len(self.plato_texts)} Platonic works\n")
     
     def extract_character_ngrams(self, text, n):
         text_no_spaces = re.sub(r'\s+', '', text)
@@ -172,8 +160,7 @@ class PaulPlatoComparison:
         
         return statistics.mean(ttr_values) if ttr_values else 0.0
     
-    def extract_features(self, text, author_name):
-        print(f"Extracting features for {author_name}'s corpus...")
+    def extract_features_for_text(self, text, text_name):
         features = {}
         
         words = text.split()
@@ -232,93 +219,126 @@ class PaulPlatoComparison:
                     vowel = feature_name.split('_')[1]
                     features[feature_name] = cleaned_text.count(vowel) / total_chars if total_chars > 0 else 0.0
         
-        print(f"Extracted {len(features)} features for {author_name}\n")
         return features
     
-    def compare_authors(self):
-        print("Comparing Paul vs Plato on 66 discriminative features...")
+    def extract_all_features(self):
+        print("Extracting features for all Paul's letters...")
+        paul_features = {}
+        for text_name, text_content in self.paul_texts.items():
+            print(f"  Extracting features for {text_name}...")
+            paul_features[text_name] = self.extract_features_for_text(text_content, text_name)
+        print(f"✓ Extracted features for {len(paul_features)} Paul letters\n")
+        
+        print("Extracting features for all Plato's works...")
+        plato_features = {}
+        for text_name, text_content in self.plato_texts.items():
+            print(f"  Extracting features for {text_name}...")
+            plato_features[text_name] = self.extract_features_for_text(text_content, text_name)
+        print(f"✓ Extracted features for {len(plato_features)} Plato works\n")
+        
+        return paul_features, plato_features
+    
+    def compare_text_by_text(self, paul_features, plato_features):
+        print("Comparing Paul vs Plato TEXT-BY-TEXT on 66 discriminative features...")
         print("=" * 80)
         
-        separated_features = []
+        separating_features = []
         overlapping_features = []
         
         for feature_data in self.discriminative_features:
             feature_name = feature_data['feature']
             
-            if feature_name not in self.paul_features or feature_name not in self.plato_features:
+            paul_values = [paul_features[text][feature_name] for text in paul_features if feature_name in paul_features[text]]
+            plato_values = [plato_features[text][feature_name] for text in plato_features if feature_name in plato_features[text]]
+            
+            if not paul_values or not plato_values:
                 continue
             
-            paul_val = self.paul_features[feature_name]
-            plato_val = self.plato_features[feature_name]
+            paul_min = min(paul_values)
+            paul_max = max(paul_values)
+            paul_mean = statistics.mean(paul_values)
             
-            diff = abs(paul_val - plato_val)
-            relative_diff = (diff / max(paul_val, plato_val, 0.0001)) * 100
+            plato_min = min(plato_values)
+            plato_max = max(plato_values)
+            plato_mean = statistics.mean(plato_values)
+            
+            overlap = not (paul_max < plato_min or plato_max < paul_min)
+            
+            mean_diff = abs(paul_mean - plato_mean)
+            relative_diff = (mean_diff / max(paul_mean, plato_mean, 0.0001)) * 100
             
             comparison = {
                 'feature': feature_name,
                 'feature_type': feature_data['feature_type'],
-                'paul_value': paul_val,
-                'plato_value': plato_val,
-                'absolute_diff': diff,
-                'relative_diff_percent': relative_diff
+                'paul_range': [paul_min, paul_max],
+                'paul_mean': paul_mean,
+                'plato_range': [plato_min, plato_max],
+                'plato_mean': plato_mean,
+                'ranges_overlap': overlap,
+                'mean_difference_percent': relative_diff
             }
             
-            if relative_diff > 20:
-                separated_features.append(comparison)
+            if not overlap:
+                separating_features.append(comparison)
             else:
                 overlapping_features.append(comparison)
         
-        separated_features.sort(key=lambda x: x['relative_diff_percent'], reverse=True)
-        overlapping_features.sort(key=lambda x: x['relative_diff_percent'])
+        separating_features.sort(key=lambda x: x['mean_difference_percent'], reverse=True)
+        overlapping_features.sort(key=lambda x: x['mean_difference_percent'], reverse=True)
         
-        print(f"\n{'STRONGLY SEPARATED FEATURES (>20% difference)':^80}")
+        print(f"\n{'PERFECTLY SEPARATING FEATURES (no range overlap)':^80}")
         print("=" * 80)
-        print(f"Found {len(separated_features)} features showing strong separation\n")
+        print(f"Found {len(separating_features)} features with ZERO overlap between Paul and Plato\n")
         
-        for i, comp in enumerate(separated_features[:20], 1):
+        for i, comp in enumerate(separating_features[:20], 1):
             print(f"{i}. {comp['feature']} ({comp['feature_type']})")
-            print(f"   Paul:  {comp['paul_value']:.6f}")
-            print(f"   Plato: {comp['plato_value']:.6f}")
-            print(f"   Difference: {comp['relative_diff_percent']:.1f}%\n")
+            print(f"   Paul range:  [{comp['paul_range'][0]:.6f}, {comp['paul_range'][1]:.6f}] (mean: {comp['paul_mean']:.6f})")
+            print(f"   Plato range: [{comp['plato_range'][0]:.6f}, {comp['plato_range'][1]:.6f}] (mean: {comp['plato_mean']:.6f})")
+            print(f"   Mean difference: {comp['mean_difference_percent']:.1f}%\n")
         
-        if len(separated_features) > 20:
-            print(f"... and {len(separated_features) - 20} more separated features\n")
+        if len(separating_features) > 20:
+            print(f"... and {len(separating_features) - 20} more perfectly separating features\n")
         
-        print(f"\n{'OVERLAPPING FEATURES (<20% difference)':^80}")
+        print(f"\n{'OVERLAPPING FEATURES (ranges overlap)':^80}")
         print("=" * 80)
-        print(f"Found {len(overlapping_features)} features showing overlap\n")
+        print(f"Found {len(overlapping_features)} features with range overlap\n")
         
         for i, comp in enumerate(overlapping_features[:10], 1):
             print(f"{i}. {comp['feature']} ({comp['feature_type']})")
-            print(f"   Paul:  {comp['paul_value']:.6f}")
-            print(f"   Plato: {comp['plato_value']:.6f}")
-            print(f"   Difference: {comp['relative_diff_percent']:.1f}%\n")
+            print(f"   Paul range:  [{comp['paul_range'][0]:.6f}, {comp['paul_range'][1]:.6f}] (mean: {comp['paul_mean']:.6f})")
+            print(f"   Plato range: [{comp['plato_range'][0]:.6f}, {comp['plato_range'][1]:.6f}] (mean: {comp['plato_mean']:.6f})")
+            print(f"   Mean difference: {comp['mean_difference_percent']:.1f}%\n")
         
-        separation_rate = (len(separated_features) / (len(separated_features) + len(overlapping_features))) * 100
+        total_features = len(separating_features) + len(overlapping_features)
+        separation_rate = (len(separating_features) / total_features * 100) if total_features > 0 else 0
         
         print("\n" + "=" * 80)
         print(f"{'SUMMARY':^80}")
         print("=" * 80)
-        print(f"Total discriminative features compared: {len(separated_features) + len(overlapping_features)}")
-        print(f"Features showing strong separation (>20%): {len(separated_features)}")
-        print(f"Features showing overlap (<20%): {len(overlapping_features)}")
-        print(f"Separation rate: {separation_rate:.1f}%")
+        print(f"Paul's letters analyzed: {len(paul_features)}")
+        print(f"Plato's works analyzed: {len(plato_features)}")
+        print(f"Total discriminative features compared: {total_features}")
+        print(f"Features with PERFECT separation (no overlap): {len(separating_features)}")
+        print(f"Features with overlap: {len(overlapping_features)}")
+        print(f"Perfect separation rate: {separation_rate:.1f}%")
         print("\n" + "=" * 80)
         
         if separation_rate >= 80:
-            print("CONCLUSION: Paul and Plato are CLEARLY SEPARATED by these discriminators ✓")
-        elif separation_rate >= 60:
-            print("CONCLUSION: Paul and Plato are MODERATELY SEPARATED by these discriminators ~")
+            print("CONCLUSION: Paul and Plato are PERFECTLY SEPARATED by these discriminators ✓")
+        elif separation_rate >= 50:
+            print("CONCLUSION: Paul and Plato are MOSTLY SEPARATED by these discriminators ~")
         else:
             print("CONCLUSION: Paul and Plato show SIGNIFICANT OVERLAP in these discriminators ✗")
         print("=" * 80)
         
         results = {
-            'total_features': len(separated_features) + len(overlapping_features),
-            'separated_count': len(separated_features),
+            'paul_letters_count': len(paul_features),
+            'plato_works_count': len(plato_features),
+            'total_features': total_features,
+            'perfectly_separating_count': len(separating_features),
             'overlapping_count': len(overlapping_features),
-            'separation_rate_percent': separation_rate,
-            'separated_features': separated_features,
+            'perfect_separation_rate_percent': separation_rate,
+            'separating_features': separating_features,
             'overlapping_features': overlapping_features
         }
         
@@ -340,17 +360,13 @@ def main():
     
     analyzer = PaulPlatoComparison(base_path)
     analyzer.load_discriminative_features()
+    analyzer.load_paul_texts()
+    analyzer.load_plato_texts()
     
-    paul_text = analyzer.load_paul_texts()
-    analyzer.paul_features = analyzer.extract_features(paul_text, "Paul")
-    
-    plato_text = analyzer.load_plato_texts()
-    analyzer.plato_features = analyzer.extract_features(plato_text, "Plato")
-    
-    analyzer.compare_authors()
+    paul_features, plato_features = analyzer.extract_all_features()
+    analyzer.compare_text_by_text(paul_features, plato_features)
     
     print("\nAnalysis complete!")
 
 if __name__ == "__main__":
     main()
-
