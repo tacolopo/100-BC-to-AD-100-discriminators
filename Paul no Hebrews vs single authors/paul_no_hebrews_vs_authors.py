@@ -1,20 +1,4 @@
 #!/usr/bin/env python3
-"""
-Paul (No Hebrews) vs Single Authors Analysis
-============================================
-
-This script compares Paul's internal linguistic variation (EXCLUDING Hebrews) to the 
-internal variation of each individual ancient Greek author who has multiple texts.
-
-This tests the hypothesis that Hebrews (widely considered non-Pauline) may be skewing 
-the results. By excluding it, we can see if the remaining 13 letters show more 
-consistency typical of single authorship.
-
-Method:
-1. Extract features from 13 Pauline letters (excluding Hebrews)
-2. Compare Paul's variance to each single author's variance
-3. Determine if removing Hebrews brings Paul into normal single-author ranges
-"""
 
 import os
 import json
@@ -30,13 +14,11 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
         self.find_multi_text_authors()
         
     def load_reference_data(self):
-        """Load discriminative features from the ancient Greek analysis."""
         print("Loading discriminative features...")
         
         with open('../results/best_discriminative_features.json', 'r', encoding='utf-8') as f:
             reference_features = json.load(f)
         
-        # Use all perfect discriminators
         self.discriminative_features = []
         for item in reference_features:
             if item['separation_score'] > 0:
@@ -45,12 +27,10 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
         print(f"Using {len(self.discriminative_features)} discriminative features")
     
     def find_multi_text_authors(self):
-        """Find authors with multiple text files by checking directories."""
         print("Finding authors with multiple texts...")
         
         self.multi_text_authors = {}
         
-        # Check each directory for multiple .txt files
         for item in Path('..').iterdir():
             if (item.is_dir() and 
                 not item.name.startswith('.') and 
@@ -61,7 +41,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
                 
                 txt_files = list(item.glob('*.txt'))
                 if len(txt_files) > 1:
-                    # Calculate total words
                     total_words = 0
                     for txt_file in txt_files:
                         try:
@@ -71,7 +50,7 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
                         except:
                             pass
                     
-                    if total_words >= 1000:  # Only include authors with sufficient text
+                    if total_words >= 1000:
                         self.multi_text_authors[item.name] = {
                             'num_texts': len(txt_files),
                             'total_words': total_words,
@@ -83,14 +62,12 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
             print(f"  - {author}: {info['num_texts']} texts, {info['total_words']} words")
     
     def clean_text(self, text):
-        """Clean and normalize Greek text."""
         greek_pattern = r'[^\u0370-\u03FF\u1F00-\u1FFF\s]'
         text = re.sub(greek_pattern, '', text)
         text = re.sub(r'\s+', ' ', text).strip().lower()
         return text
     
     def extract_all_features(self, text):
-        """Extract ALL discriminative features from text."""
         cleaned_text = self.clean_text(text)
         words = cleaned_text.split()
         total_words = len(words)
@@ -101,7 +78,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
             
         features = {}
         
-        # MORPHOLOGICAL FEATURES
         particles = {
             'particle_δέ_freq': ['δε', 'δέ'],
             'particle_τε_freq': ['τε', 'τέ'], 
@@ -118,7 +94,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
             count = sum(1 for word in words if word in variants)
             features[feature_name] = count / total_words
         
-        # Case endings
         case_endings = {
             'genitive_sg_masc_freq': ['ου', 'οῦ'],
             'genitive_sg_fem_freq': ['ης', 'ῆς', 'ας', 'ᾶς'],
@@ -140,7 +115,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
                         break
             features[f'{case}'] = count / total_words
         
-        # Verb forms
         verb_endings = {
             'present_3sg_freq': ['ει', 'εῖ'],
             'aorist_3sg_freq': ['ε', 'έ', 'εν', 'έν'],
@@ -157,7 +131,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
                         break
             features[f'{verb_form}'] = count / total_words
         
-        # PHONETIC FEATURES
         if total_chars > 0:
             vowels = ['α', 'ε', 'η', 'ι', 'ο', 'υ', 'ω']
             for vowel in vowels:
@@ -171,7 +144,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
             for diphthong in diphthongs:
                 features[f'diphthong_{diphthong}_freq'] = cleaned_text.count(diphthong) / total_chars
         
-        # VOCABULARY FEATURES
         if total_words > 0:
             unique_words = len(set(words))
             features['ttr'] = unique_words / total_words
@@ -188,7 +160,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
             most_frequent_10 = sum(sorted(word_freq.values(), reverse=True)[:10])
             features['top10_ratio'] = most_frequent_10 / total_words
         
-        # WORD LENGTH FEATURES
         if words:
             word_lengths = [len(word) for word in words]
             features['avg_length'] = statistics.mean(word_lengths)
@@ -204,7 +175,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
         return features
     
     def extract_paul_features_no_hebrews(self):
-        """Extract features from Paul's letters EXCLUDING Hebrews."""
         print("Extracting features from Paul's letters (excluding Hebrews)...")
         
         paul_letters_dir = Path("../Paul versus all authors/pauline_letters")
@@ -215,7 +185,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
         paul_features = {}
         letter_files = list(paul_letters_dir.glob("*.txt"))
         
-        # Filter out Hebrews
         letter_files = [f for f in letter_files if f.stem != "Hebrews"]
         
         for letter_file in letter_files:
@@ -236,7 +205,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
         return paul_features
     
     def extract_author_features(self, author_name):
-        """Extract features from an individual author's multiple texts."""
         print(f"  Extracting features for {author_name}...")
         
         author_dir = Path(f"../{author_name}")
@@ -261,10 +229,8 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
         return author_features
     
     def calculate_author_variance(self, author_features):
-        """Calculate variance for each feature across an author's texts."""
         feature_variances = {}
         
-        # Get all feature names from first text
         if not author_features:
             return {}
         
@@ -284,46 +250,37 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
         return feature_variances
     
     def compare_paul_to_authors(self):
-        """Compare Paul's variance (no Hebrews) to each individual author's variance."""
         print("\n=== Paul (No Hebrews) vs Single Authors Analysis ===")
         
-        # Get Paul's features (excluding Hebrews)
         paul_features = self.extract_paul_features_no_hebrews()
         if not paul_features:
             print("Could not extract Paul's features!")
             return
         
-        # Calculate Paul's variance for each feature
         paul_variances = self.calculate_author_variance(paul_features)
         print(f"Calculated variances for {len(paul_variances)} features from Paul (no Hebrews)")
         
-        # Compare to each individual author
         author_comparisons = {}
         
         print("\nComparing Paul (no Hebrews) to individual authors:")
         for author_name in self.multi_text_authors.keys():
             print(f"\nAnalyzing {author_name}...")
             
-            # Extract features for this author
             author_features = self.extract_author_features(author_name)
             if len(author_features) < 2:
                 print(f"  Insufficient texts for {author_name}")
                 continue
             
-            # Calculate author's variance
             author_variances = self.calculate_author_variance(author_features)
             
-            # Compare Paul vs this author
             comparison = self.compare_variances(paul_variances, author_variances, author_name)
             author_comparisons[author_name] = comparison
         
-        # Generate final analysis
         self.generate_comparative_analysis(paul_features, author_comparisons, paul_variances)
         
         return author_comparisons
     
     def compare_variances(self, paul_variances, author_variances, author_name):
-        """Compare Paul's variances to another author's variances."""
         feature_comparisons = {}
         paul_higher_count = 0
         total_comparisons = 0
@@ -360,12 +317,10 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
         }
     
     def generate_comparative_analysis(self, paul_features, author_comparisons, paul_variances):
-        """Generate comprehensive comparative analysis."""
         print(f"\n{'='*60}")
         print(f"PAUL (NO HEBREWS) VS INDIVIDUAL AUTHORS ANALYSIS")
         print(f"{'='*60}")
         
-        # Overall statistics
         total_authors = len(author_comparisons)
         consistency_scores = [comp['consistency_score'] for comp in author_comparisons.values()]
         
@@ -377,7 +332,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
             print(f"Average consistency with single authors: {avg_consistency:.1%}")
             print(f"")
         
-        # Interpretation
         if avg_consistency >= 0.7:
             interpretation = "Paul's variation is NORMAL for a single author"
         elif avg_consistency >= 0.5:
@@ -389,7 +343,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
         
         print(f"INTERPRETATION: {interpretation}")
         
-        # Compare to previous result with Hebrews
         print(f"")
         print(f"IMPROVEMENT FROM EXCLUDING HEBREWS:")
         print(f"Previous result (with Hebrews): 33.4% average consistency")
@@ -401,7 +354,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
             print(f"Change: {improvement:.1%} (worse consistency)")
         print(f"")
         
-        # Rank authors by how similar they are to Paul
         sorted_authors = sorted(author_comparisons.items(), 
                                key=lambda x: x[1]['consistency_score'], 
                                reverse=True)
@@ -421,7 +373,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
             print(f"     Paul higher variance: {comp['paul_higher_percentage']:.1f}% of features")
             print(f"     Comparisons: {comp['total_comparisons']} features")
         
-        # Count how many authors Paul now varies less than
         authors_paul_varies_less = sum(1 for comp in author_comparisons.values() if comp['consistency_score'] > 0.5)
         authors_paul_varies_more = total_authors - authors_paul_varies_less
         
@@ -430,7 +381,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
         print(f"Authors where Paul varies LESS (good): {authors_paul_varies_less}/{total_authors} ({authors_paul_varies_less/total_authors*100:.1f}%)")
         print(f"Authors where Paul varies MORE (bad): {authors_paul_varies_more}/{total_authors} ({authors_paul_varies_more/total_authors*100:.1f}%)")
         
-        # Save detailed results
         results = {
             'paul_letters_count': len(paul_features),
             'paul_letters': list(paul_features.keys()),
@@ -458,7 +408,6 @@ class PaulNoHebrewsVsSingleAuthorsAnalyzer:
         print(f"Detailed results saved to: {output_file}")
 
 def main():
-    """Main execution function."""
     analyzer = PaulNoHebrewsVsSingleAuthorsAnalyzer()
     analyzer.compare_paul_to_authors()
 
